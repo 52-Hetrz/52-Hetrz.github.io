@@ -62,6 +62,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-pictuer-insert" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/pictuer-insert/" class="article-date">
+  <time datetime="2019-10-20T02:39:39.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/20/pictuer-insert/">如何向自己的博客中添加图片</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在本地的Hexo管理文件夹中的source文件夹下，建立一个picture文件夹，将图片放在里面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+
+<p>上传到github，然后在库里可以找到相应的文件夹，右击图片查看详细信息，然后复制网络连接路径，然后添加到图片路径即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/pictuer-insert/" data-id="ck1ydunpq0000dchfxp7w9q8m" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study-Notes/">Study Notes</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Plan1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/20/Plan1/" class="article-date">
@@ -118,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/20/Plan1/" data-id="ck1ydnhpo0001aphf7vilkcex" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/20/Plan1/" data-id="ck1ydodu70000cwhfnoy6q81r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/plan/">plan</a></li></ul>
@@ -170,13 +212,13 @@
 <p>也可以自己写高阶函数。</p>
 <h3 id="数据库："><a href="#数据库：" class="headerlink" title="数据库："></a>数据库：</h3><h4 id="matplotlib："><a href="#matplotlib：" class="headerlink" title="matplotlib："></a>matplotlib：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pylab <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.oyplot <span class="keyword">import</span> MultipleLocator   <span class="comment">#引入设置坐标轴间距的包</span></span><br><span class="line"></span><br><span class="line">values=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">squares=[<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">25</span>]</span><br><span class="line">plt.plot(values,squares,linewidth=<span class="number">1</span>)                          <span class="comment">#用plt.plot()绘制曲线</span></span><br><span class="line">plt.xlim((<span class="number">0</span>,<span class="number">6</span>))                                                                         <span class="comment">#设置x轴的显示范围</span></span><br><span class="line">plt.title(<span class="string">"Square Numbers"</span>,fontsize=<span class="number">24</span>)                  <span class="comment">#为图表添加标题并设置字体大小</span></span><br><span class="line">plt.xlabel(<span class="string">"Value"</span>,fontsize=<span class="number">14</span>)                                    <span class="comment">#为x轴添加标签并设置字体大小</span></span><br><span class="line">plt.ylabel(<span class="string">"Square of Values"</span>,fontsize=<span class="number">14</span>)             <span class="comment">#为y轴添加标签并设置字体大小</span></span><br><span class="line">plt.yticks([<span class="number">0</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">25</span>],</span><br><span class="line">     [<span class="string">"level1"</span>,<span class="string">"level2"</span>,<span class="string">"level3"</span>,<span class="string">"level4"</span>,<span class="string">"level5"</span>,<span class="string">"level6"</span>],fontsize=<span class="number">8</span>)    </span><br><span class="line">                                                                                                   <span class="comment">#把y轴上对应点设置成字符串并设置大小</span></span><br><span class="line">plt.gca().xaxis.set_major_locator(MultipleLocator(<span class="number">2</span>))              <span class="comment">#将x轴的间距设置为2</span></span><br><span class="line">plt.scatter(values,squares)                                             <span class="comment">#可用来绘制点</span></span><br><span class="line">plt.show()                                                                               <span class="comment">#显示图像</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pylab <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">values=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">squares=[<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">25</span>]</span><br><span class="line">plt.scatter(values,[x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> values ],c=<span class="string">'red'</span>,edgecolor=<span class="string">"none"</span>)                                             </span><br><span class="line">					        <span class="comment">#可用来绘制点,可以使用列表推导式，c=''来设置颜色，edgecolor=''来设置轮廓颜色。</span></span><br><span class="line">plt.xlim((<span class="number">0</span>,<span class="number">6</span>))                                                                        <span class="comment">#设置x轴的显示范围</span></span><br><span class="line">plt.title(<span class="string">"Square Numbers"</span>,fontsize=<span class="number">24</span>)                  <span class="comment">#为图表添加标题并设置字体大小</span></span><br><span class="line">plt.xlabel(<span class="string">"Value"</span>,fontsize=<span class="number">14</span>)                                     <span class="comment">#为x轴添加标签并设置字体大小</span></span><br><span class="line">plt.ylabel(<span class="string">"Square of Values"</span>,fontsize=<span class="number">14</span>)              <span class="comment">#为y轴添加标签并设置字体大小</span></span><br><span class="line"></span><br><span class="line">plt.gca().xaxis.set_major_locator(MultipleLocator(<span class="number">2</span>))              <span class="comment">#将x轴的间距设置为2</span></span><br><span class="line">plt.show()                                                                               <span class="comment">#显示图像</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pylab <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">values=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">squares=[<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">25</span>]</span><br><span class="line">plt.scatter(values,squares,c=<span class="string">'red'</span>,edgecolor=<span class="string">"none"</span>)                                             </span><br><span class="line">					        <span class="comment">#可用来绘制点,可以使用列表推导式，c=''来设置颜色，edgecolor=''来设置轮廓颜色。</span></span><br><span class="line">plt.scatter(values,squares,c=squares,cmap=plt.cm.Blues,s=<span class="number">20</span>)</span><br><span class="line">                            <span class="comment">#可以将颜色设置为y的值，然后加上cmap.... ，这样可以设置为一种颜色的渐变</span></span><br><span class="line">                            <span class="comment">#否则是RGB？ 反正五颜六色</span></span><br><span class="line">plt.xlim((<span class="number">0</span>,<span class="number">6</span>))                                                                        <span class="comment">#设置x轴的显示范围</span></span><br><span class="line">plt.title(<span class="string">"Square Numbers"</span>,fontsize=<span class="number">24</span>)                  <span class="comment">#为图表添加标题并设置字体大小</span></span><br><span class="line">plt.xlabel(<span class="string">"Value"</span>,fontsize=<span class="number">14</span>)                                     <span class="comment">#为x轴添加标签并设置字体大小</span></span><br><span class="line">plt.ylabel(<span class="string">"Square of Values"</span>,fontsize=<span class="number">14</span>)              <span class="comment">#为y轴添加标签并设置字体大小</span></span><br><span class="line"></span><br><span class="line">plt.gca().xaxis.set_major_locator(MultipleLocator(<span class="number">2</span>))              <span class="comment">#将x轴的间距设置为2</span></span><br><span class="line">plt.show()                                                                               <span class="comment">#显示图像</span></span><br></pre></td></tr></table></figure>
 
 </details>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/18/Plan-one-act/" data-id="ck1ydnhpj0000aphfzdtx59zl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/18/Plan-one-act/" data-id="ck1ydodud0001cwhflqubstzg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/plan/">plan</a></li></ul>
@@ -283,10 +325,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/16/MyHexo/" data-id="ck1ydnhpr0003aphflmnvphr1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/16/MyHexo/" data-id="ck1ydoduh0003cwhf8a7n00kd" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Notes/">Notes</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study-Notes/">Study Notes</a></li></ul>
 
     </footer>
   </div>
@@ -308,7 +350,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notes/">Notes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan/">plan</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study-Notes/">Study Notes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plan/">plan</a></li></ul>
     </div>
   </div>
 
@@ -318,7 +360,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Notes/" style="font-size: 10px;">Notes</a> <a href="/tags/plan/" style="font-size: 20px;">plan</a>
+      <a href="/tags/Study-Notes/" style="font-size: 10px;">Study Notes</a> <a href="/tags/plan/" style="font-size: 10px;">plan</a>
     </div>
   </div>
 
@@ -338,6 +380,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/10/20/pictuer-insert/">如何向自己的博客中添加图片</a>
+          </li>
         
           <li>
             <a href="/2019/10/20/Plan1/">Plan_one</a>
