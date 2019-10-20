@@ -64,8 +64,8 @@
   
     <article id="post-Plan1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/10/19/Plan1/" class="article-date">
-  <time datetime="2019-10-19T05:19:18.439Z" itemprop="datePublished">2019-10-19</time>
+    <a href="/2019/10/20/Plan1/" class="article-date">
+  <time datetime="2019-10-20T02:13:31.496Z" itemprop="datePublished">2019-10-20</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/19/Plan1/">Plan_one</a>
+      <a class="article-title" href="/2019/10/20/Plan1/">Plan_one</a>
     </h1>
   
 
@@ -100,7 +100,7 @@
 <li><input checked disabled type="checkbox"> 切片</li>
 <li><input checked disabled type="checkbox"> 迭代器</li>
 <li><input checked disabled type="checkbox"> 面向对象</li>
-<li><input disabled type="checkbox"> 写注释</li>
+<li><input checked disabled type="checkbox"> 写注释</li>
 </ul>
 <p>周五下午学习算法《机器学习》：</p>
 <ul>
@@ -111,14 +111,14 @@
 <p>周六学习数据分析库、可视化工具：</p>
 <ul>
 <li><input disabled type="checkbox"> pandas</li>
-<li><input disabled type="checkbox"> matplotlib</li>
+<li><input checked disabled type="checkbox"> matplotlib</li>
 <li><input disabled type="checkbox"> numpy</li>
 </ul>
 </details>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/19/Plan1/" data-id="ck1x4gfa7000323hf5yy5q1ai" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/20/Plan1/" data-id="ck1ydnhpo0001aphf7vilkcex" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/plan/">plan</a></li></ul>
@@ -168,11 +168,15 @@
 <p>1、map(fuc,iter1…….)：对构造器中的元素进行fuc处理之后，再添加到一个构造器中并返回这个构造器。传函数参数的时候不要加括号。可以传多个构造器或者列表，但当元素数量最少的处理完之后就会退出。</p>
 <p>2、filter(func,iter1):fuc的返回值应该为boolean类型，筛选出iter1中为true的值返回到构造器中。</p>
 <p>也可以自己写高阶函数。</p>
+<h3 id="数据库："><a href="#数据库：" class="headerlink" title="数据库："></a>数据库：</h3><h4 id="matplotlib："><a href="#matplotlib：" class="headerlink" title="matplotlib："></a>matplotlib：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pylab <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.oyplot <span class="keyword">import</span> MultipleLocator   <span class="comment">#引入设置坐标轴间距的包</span></span><br><span class="line"></span><br><span class="line">values=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">squares=[<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">25</span>]</span><br><span class="line">plt.plot(values,squares,linewidth=<span class="number">1</span>)                          <span class="comment">#用plt.plot()绘制曲线</span></span><br><span class="line">plt.xlim((<span class="number">0</span>,<span class="number">6</span>))                                                                         <span class="comment">#设置x轴的显示范围</span></span><br><span class="line">plt.title(<span class="string">"Square Numbers"</span>,fontsize=<span class="number">24</span>)                  <span class="comment">#为图表添加标题并设置字体大小</span></span><br><span class="line">plt.xlabel(<span class="string">"Value"</span>,fontsize=<span class="number">14</span>)                                    <span class="comment">#为x轴添加标签并设置字体大小</span></span><br><span class="line">plt.ylabel(<span class="string">"Square of Values"</span>,fontsize=<span class="number">14</span>)             <span class="comment">#为y轴添加标签并设置字体大小</span></span><br><span class="line">plt.yticks([<span class="number">0</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">25</span>],</span><br><span class="line">     [<span class="string">"level1"</span>,<span class="string">"level2"</span>,<span class="string">"level3"</span>,<span class="string">"level4"</span>,<span class="string">"level5"</span>,<span class="string">"level6"</span>],fontsize=<span class="number">8</span>)    </span><br><span class="line">                                                                                                   <span class="comment">#把y轴上对应点设置成字符串并设置大小</span></span><br><span class="line">plt.gca().xaxis.set_major_locator(MultipleLocator(<span class="number">2</span>))              <span class="comment">#将x轴的间距设置为2</span></span><br><span class="line">plt.scatter(values,squares)                                             <span class="comment">#可用来绘制点</span></span><br><span class="line">plt.show()                                                                               <span class="comment">#显示图像</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pylab <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">values=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">squares=[<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">25</span>]</span><br><span class="line">plt.scatter(values,[x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> values ],c=<span class="string">'red'</span>,edgecolor=<span class="string">"none"</span>)                                             </span><br><span class="line">					        <span class="comment">#可用来绘制点,可以使用列表推导式，c=''来设置颜色，edgecolor=''来设置轮廓颜色。</span></span><br><span class="line">plt.xlim((<span class="number">0</span>,<span class="number">6</span>))                                                                        <span class="comment">#设置x轴的显示范围</span></span><br><span class="line">plt.title(<span class="string">"Square Numbers"</span>,fontsize=<span class="number">24</span>)                  <span class="comment">#为图表添加标题并设置字体大小</span></span><br><span class="line">plt.xlabel(<span class="string">"Value"</span>,fontsize=<span class="number">14</span>)                                     <span class="comment">#为x轴添加标签并设置字体大小</span></span><br><span class="line">plt.ylabel(<span class="string">"Square of Values"</span>,fontsize=<span class="number">14</span>)              <span class="comment">#为y轴添加标签并设置字体大小</span></span><br><span class="line"></span><br><span class="line">plt.gca().xaxis.set_major_locator(MultipleLocator(<span class="number">2</span>))              <span class="comment">#将x轴的间距设置为2</span></span><br><span class="line">plt.show()                                                                               <span class="comment">#显示图像</span></span><br></pre></td></tr></table></figure>
+
 </details>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/18/Plan-one-act/" data-id="ck1x4gfa3000123hf4evuhswq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/18/Plan-one-act/" data-id="ck1ydnhpj0000aphfzdtx59zl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/plan/">plan</a></li></ul>
@@ -227,7 +231,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 
 <p>在这一步，也就是安装Hexo过程中遇到了最大的问题。出现了好多ERR！</p>
-<p><img src="MyHexo/ERR.jpg" alt="ERR"></p>
+<p><img src="https://github.com/52-Hetrz/52-Hetrz.github.io/blob/master/picture/ERR.jpg?raw=true" alt></p>
 <p>后来在Hexo文档里找到了解决方法<a href="https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally" target="_blank" rel="noopener">关于使用 -g 安装出现ERR问题的解决方法</a></p>
 <p>按照解决办法里的方式，成功安装了Hexo。运行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo -v</span><br></pre></td></tr></table></figure>
@@ -279,7 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/16/MyHexo/" data-id="ck1x4gf9y000023hf4gpab1vg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/16/MyHexo/" data-id="ck1ydnhpr0003aphflmnvphr1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Notes/">Notes</a></li></ul>
@@ -336,7 +340,7 @@
       <ul>
         
           <li>
-            <a href="/2019/10/19/Plan1/">Plan_one</a>
+            <a href="/2019/10/20/Plan1/">Plan_one</a>
           </li>
         
           <li>
