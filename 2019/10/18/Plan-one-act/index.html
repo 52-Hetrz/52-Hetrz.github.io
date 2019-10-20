@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="North&#39;s Home">
 <meta property="og:description" content="结合API和他人博客。 主要参考了python 3.7的标准库      展开  推导式：列表推导式：[]  在第一句话写要返回数组中的元素。后面的句子写元素的筛选要求 ()  同样的操作形式，但返回的是一个generator。 字典推导式：{}  第一句话 “键：值”形式来规定返回键值对。后面的句子写筛选要求。集合推导式：{}  第一句话写要返回集合中的元素。后面写筛选标准。 Iterator：">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-20T02:51:15.431Z">
+<meta property="og:updated_time" content="2019-10-20T07:43:49.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Plan_one_act">
 <meta name="twitter:description" content="结合API和他人博客。 主要参考了python 3.7的标准库      展开  推导式：列表推导式：[]  在第一句话写要返回数组中的元素。后面的句子写元素的筛选要求 ()  同样的操作形式，但返回的是一个generator。 字典推导式：{}  第一句话 “键：值”形式来规定返回键值对。后面的句子写筛选要求。集合推导式：{}  第一句话写要返回集合中的元素。后面写筛选标准。 Iterator：">
@@ -107,11 +107,13 @@
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pylab <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">values=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">squares=[<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">25</span>]</span><br><span class="line">plt.scatter(values,squares,c=<span class="string">'red'</span>,edgecolor=<span class="string">"none"</span>)                                             </span><br><span class="line">					        <span class="comment">#可用来绘制点,可以使用列表推导式，c=''来设置颜色，edgecolor=''来设置轮廓颜色。</span></span><br><span class="line">plt.scatter(values,squares,c=squares,cmap=plt.cm.Blues,s=<span class="number">20</span>)</span><br><span class="line">                            <span class="comment">#可以将颜色设置为y的值，然后加上cmap.... ，这样可以设置为一种颜色的渐变</span></span><br><span class="line">                            <span class="comment">#否则是RGB？ 反正五颜六色</span></span><br><span class="line">plt.xlim((<span class="number">0</span>,<span class="number">6</span>))                                                                        <span class="comment">#设置x轴的显示范围</span></span><br><span class="line">plt.title(<span class="string">"Square Numbers"</span>,fontsize=<span class="number">24</span>)                  <span class="comment">#为图表添加标题并设置字体大小</span></span><br><span class="line">plt.xlabel(<span class="string">"Value"</span>,fontsize=<span class="number">14</span>)                                     <span class="comment">#为x轴添加标签并设置字体大小</span></span><br><span class="line">plt.ylabel(<span class="string">"Square of Values"</span>,fontsize=<span class="number">14</span>)              <span class="comment">#为y轴添加标签并设置字体大小</span></span><br><span class="line"></span><br><span class="line">plt.gca().xaxis.set_major_locator(MultipleLocator(<span class="number">2</span>))              <span class="comment">#将x轴的间距设置为2</span></span><br><span class="line">plt.show()                                                                               <span class="comment">#显示图像</span></span><br></pre></td></tr></table></figure>
 
+<p>随机漫步图</p>
+<h3 id="机器学习："><a href="#机器学习：" class="headerlink" title="机器学习："></a>机器学习：</h3><p>只是学习了一些基础知识，检验方法和公式。</p>
 </details>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/18/Plan-one-act/" data-id="ck1ydodud0001cwhflqubstzg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/18/Plan-one-act/" data-id="ck1yoq2j70000h4hf363hm269" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/plan/">plan</a></li></ul>
