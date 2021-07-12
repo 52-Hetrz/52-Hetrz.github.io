@@ -61,29 +61,29 @@
 
     <h2>Ubuntu环境下安装Hadoop及其环境的配置</h2>
     <h3>1. 安装JAVA OpenJDK8</h3>
-    <h5>1.1. 使用ctrl+alt+t打开终端，更新系统安装包缓存，并安装OpenJDK8:</h5>
+    <h4>1.1. 使用ctrl+alt+t打开终端，更新系统安装包缓存，并安装OpenJDK8:</h4>
     <pre><code class='language-shell' lang='shell'>$ sudo aot-get update
     $sudo apt-get install openjdk-8-jdk
     </code></pre>
-    <h5>1.2. 如果系统中存在多个版本的JDK，可以使用以下命令设置一个默认的JDK:</h5>
+    <h4>1.2. 如果系统中存在多个版本的JDK，可以使用以下命令设置一个默认的JDK:</h4>
     <pre><code class='language-shell' lang='shell'>$ sudo update-alternatives --config java
     $ sudo update-alternatives --config javac
     </code></pre>
     <p><img src='../../images/Ubuntu_install_Hadoop/1626059601042.png' alt='1626059601042' referrerPolicy='no-referrer' /></p>
-    <h5>1.3. 查看系统安装的的java版本</h5>
+    <h4>1.3. 查看系统安装的的java版本</h4>
     <pre><code class='language-shell' lang='shell'>$ java -version
     </code></pre>
     <p><img src='../../images/Ubuntu_install_Hadoop/1626059692491.png' alt='1626059692491' referrerPolicy='no-referrer' /></p>
     <h3>2. 配置SSH及免密登录方式</h3>
-    <h5>2.1. hadoop需要使用SSH的方式登录，Linux下需要安装SSH.在此只需要安装服务端就可以了：</h5>
+    <h4>2.1. hadoop需要使用SSH的方式登录，Linux下需要安装SSH.在此只需要安装服务端就可以了：</h4>
     <pre><code class='language-shell' lang='shell'>$ sudo apt-get install openssh-server
     </code></pre>
     <p>如果要测试本机的登录，使用<code>$ ssh localhost</code>，然后输入&#39;yes&#39;就可以了，但如果换做是集群，工作量还是很大的，所以需要配置免密登录方式。</p>
-    <h5>2.2. 在本机生成公钥和私钥，输入指令：</h5>
+    <h4>2.2. 在本机生成公钥和私钥，输入指令：</h4>
     <pre><code class='language-shell' lang='shell'>$ ssh-keygen -t rsa
     </code></pre>
     <p>会在 ~/.ssh 文件夹下生成两个文件，在路径输入时，将文件名设置为<strong>hadoop_rsa</strong>，然后还会生成 另一个　<strong>hadoop_rsa.pub</strong> ，分别为私钥和公钥文件。</p>
-    <h5>2.3. 导入公钥到认证文件，并更改权限：</h5>
+    <h4>2.3. 导入公钥到认证文件，并更改权限：</h4>
     <p>1) 导入本机：</p>
     <pre><code class='language-shell' lang='shell'>$ cat ~/.ssh/hadoop_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
     </code></pre>
@@ -101,12 +101,12 @@
     </code></pre>
     <p>3) 测试：<code>$ ssh localhost</code>　第一次输入yes,之后就不需要了。</p>
     <h3>３.Hadoop的安装</h3>
-    <h5>3.1. 在<a href='http://hadoop.apache.org/releases.html'>hadoop官网</a>，下载hadoop安装包，在这里我是用的是hadoop-2.10.1，选择binary下载即可。</h5>
-    <h5>3.2. 将下载的文件解压，然后移动到目的文件夹：</h5>
+    <h4>3.1. 在<a href='http://hadoop.apache.org/releases.html'>hadoop官网</a>，下载hadoop安装包，在这里我是用的是hadoop-2.10.1，选择binary下载即可。</h4>
+    <h4>3.2. 将下载的文件解压，然后移动到目的文件夹：</h4>
     <pre><code class='language-shell' lang='shell'>$ tar -zvxf hadoop-2.10.1.tar.gz
     $ mv ./hadoop-2.10.1 /opt/hadoop
     </code></pre>
-    <h5>3.3. 创建hadoop用户和组，并授予执行权限:</h5>
+    <h4>3.3. 创建hadoop用户和组，并授予执行权限:</h4>
     <pre><code class='language-shell' lang='shell'>$ sudo addgroup hadoop
     $ sudo usermod -a -G hadoop xxx
     </code></pre>
@@ -119,7 +119,7 @@
     <pre><code class='language-shell' lang='shell'>$ sudo chmod -R 755 /opt/hadoop
     $ sudo chmod -R xxx:hadoop /opt/hadoop
     </code></pre>
-    <h5>3.4. 修改配置文件，可以选择修改文件 /etc/profile</h5>
+    <h4>3.4. 修改配置文件，可以选择修改文件 /etc/profile</h4>
     <pre><code class='language-shell' lang='shell'>$ sudo gedit /etc/profile
     </code></pre>
     <p>在文件末尾添加如下的信息（这里的　HADOOP_HOME　和　JAVA_HOME　取决于自己系统上安装的文件位置，JAVA_HOME及在上文安装jdk时，jdk文件安装的位置)</p>
@@ -130,18 +130,18 @@
     <p>保存后退出，并在shell中输入下面指令，是的配置文件可以立即生效</p>
     <pre><code class='language-shell' lang='shell'>source /etc/hadoop
     </code></pre>
-    <h5>3.5 测试是否配置成功</h5>
+    <h4>3.5 测试是否配置成功</h4>
     <pre><code class='language-shell' lang='shell'>hadoop version
     </code></pre>
     <p><img src='../../images/Ubuntu_install_Hadoop/2021-07-12%2016-17-15%20%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png' alt='' referrerPolicy='no-referrer' /></p>
-    <h5>3.6. hadoop单击配置(非分布式模式)，通过测试demo(一个文字统计部分)来检查配置是否正确</h5>
+    <h4>3.6. hadoop单击配置(非分布式模式)，通过测试demo(一个文字统计部分)来检查配置是否正确</h4>
     <pre><code class='language-shell' lang='shell'>cd /opt/hadoop/hadoop-2.10.1
     mkdir input
     cp README.text input
     bin/hadoop jar share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-2.7.3-sources.jar org.apache.hadoop.examples.WordCount input output
     </code></pre>
     <p><img src='../../images/Ubuntu_install_Hadoop/2021-07-12%2016-34-07%20%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png' alt='' referrerPolicy='no-referrer' /></p>
-    <h5>3.7. hadoop伪分布式配置</h5>
+    <h4>3.7. hadoop伪分布式配置</h4>
     <p>伪分布式配置只需要修改core-site.xml 和 hdfs-site.xml 两个文件就足够了，这两个文件都在 hadoop-2.10.1/etc/hadoop 文件夹中。</p>
     <p>首先是core-site.xml,这是为了设置临时目录位置，否则会默认在/tmp/hadoo-hadoop中，这个文件夹在重启时可能会被系统清除，所以需要改变配置路径:</p>
     <pre><code class='language-html' lang='html'>&lt;configuration&gt;
@@ -186,7 +186,7 @@
     <p>关闭hdfs:</p>
     <pre><code class='language-shell' lang='shell'>$ ./sbin/stop-dfs.sh
     </code></pre>
-    <h5>3.7. mapreduce配置</h5>
+    <h4>3.7. mapreduce配置</h4>
     <p>修改etc/hadoop文件下的mapred-site.xml.template  和　yarn-site.xml文件。</p>
     <p>修改mapred-site.xml.template:</p>
     <pre><code class='language-xml' lang='xml'>        &lt;property&gt;
@@ -200,7 +200,7 @@
                  &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
              &lt;/property&gt;
     </code></pre>
-    <h5>3.8 启动yarn</h5>
+    <h4>3.8 启动yarn</h4>
     <p>首先要启动hdfs，然后在执行<code>$ ./sbin/start<span style='font-family:"Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif'>-</span>yarn.sh</code></p>
     <p><img src='../../images/Ubuntu_install_Hadoop/1626084605148.png' alt='1626084605148' referrerPolicy='no-referrer' /></p>
     <p>开启历史服务器，这样可以在web界面中查看任务运行情况：</p>
@@ -248,12 +248,12 @@
 <div class="lx-navigation">
 	<div class="lx-cover prev lx-cover-sm" style="background-image: url(/images/footer6.JPG)">
 		<div class="overlay"></div>
-		<a class="copy" href="/2019/10/20/Plan1/">
+		<a class="copy" href="/2019/10/16/MyHexo/">
 			<div class="display-t">
 				<div class="display-tc">
 					<div>
 						<span>Next</span>
-						<h3>Plan_one</h3>
+						<h3>MyHexo</h3>
 					</div>
 				</div>
 			</div>
@@ -261,12 +261,12 @@
 	</div>
         <div class="lx-cover next lx-cover-sm" style="background-image: url(/images/footer5.JPG)">
 		<div class="overlay"></div>
-		<a class="copy" href="/2019/10/16/MyHexo/">
+		<a class="copy" href="">
 			<div class="display-t">
 				<div class="display-tc">
 					<div>
 						<span>Prev</span>
-						<h3>MyHexo</h3>
+						<h3>None</h3>
 					</div>
 				</div>
 			</div>
@@ -294,7 +294,7 @@
         </div>
         <div class="row for-name">
           <p>Life</p>
-          <span class="tagline">心中有爱</span>
+          <span class="tagline">爱自由，爱生活，爱自己，爱人</span>
         </div>
       </div>
     </span>
