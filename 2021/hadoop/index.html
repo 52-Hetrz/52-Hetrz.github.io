@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Plan_one_act | Good Life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Life">
+  <meta name="keywords" content="Learn">
+  <meta name="description" content="This is SuPeng Wang's Blog">
+  <script id="hexo-configurations">
+  var CONFIG = {
+    root: '/',
+    theme: 'lx',
+    version: '1.4.5',
+    localsearch:{
+      "enable": false,
+      "trigger": "auto",
+      "top_n_per_article": 1,
+      "unescape": false,
+      "preload": false
+      },
+    path: '-'
+  };
+</script>
+
+  <link rel="shortcut icon" href="/images/head1.JPG">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery.jside.menu.js"></script>
+	<script>
+	$(document).ready(function(){
+	$(".menu-container").jSideMenu({
+	    jSidePosition: "position-right",
+	    jSideSticky: true,
+	    jSideSkin: "endless-river",
+	     });
+	}); 
+	</script>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300|Noto+Serif+SC&amp;display=swap">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+</head>
+<body>
+<div class="single">
+<div id="page">
+<div id="lx-aside" style="background-image: url(/images/page2.jpg)" data-stellar-background-ratio="0.5">
+  <div class="overlay">
+  <div class="page-title">
+    <div class="avatar"><a href="/"><img src="/images/head1.JPG"></a></div>
+    <span>2019-10-18</span>
+    <h2>Plan_one_act</h2>
+    <div class="tags"><i class="fa fa-tag"></i><a class="tag-link" href="/tags/plan/">plan</a></div>
+    </div>
+</div>
+</div>
+<div id="lx-main-content">
+  <div class="lx-post">
+    <div class="lx-entry padding">
+      <div>
+        <p>结合API和他人博客。</p>
+<p>主要参考了python 3.7的标准库</p>
+<details>
+    <summary>展开</summary>
+
+    <h2>Ubuntu环境下安装Hadoop及其环境的配置</h2>
+    <h3>1. 安装JAVA OpenJDK8</h3>
+    <h5>1.1. 使用ctrl+alt+t打开终端，更新系统安装包缓存，并安装OpenJDK8:</h5>
+    <pre><code class='language-shell' lang='shell'>$ sudo aot-get update
+    $sudo apt-get install openjdk-8-jdk
+    </code></pre>
+    <h5>1.2. 如果系统中存在多个版本的JDK，可以使用以下命令设置一个默认的JDK:</h5>
+    <pre><code class='language-shell' lang='shell'>$ sudo update-alternatives --config java
+    $ sudo update-alternatives --config javac
+    </code></pre>
+    <p><img src='file:///home/life/Git/myHexo/52-Hetrz.github.io/images/Ubuntu_install_Hadoop/1626059601042.png' alt='1626059601042' referrerPolicy='no-referrer' /></p>
+    <h5>1.3. 查看系统安装的的java版本</h5>
+    <pre><code class='language-shell' lang='shell'>$ java -version
+    </code></pre>
+    <p><img src='file:///home/life/Git/myHexo/52-Hetrz.github.io/images/Ubuntu_install_Hadoop/1626059692491.png' alt='1626059692491' referrerPolicy='no-referrer' /></p>
+    <h3>2. 配置SSH及免密登录方式</h3>
+    <h5>2.1. hadoop需要使用SSH的方式登录，Linux下需要安装SSH.在此只需要安装服务端就可以了：</h5>
+    <pre><code class='language-shell' lang='shell'>$ sudo apt-get install openssh-server
+    </code></pre>
+    <p>如果要测试本机的登录，使用<code>$ ssh localhost</code>，然后输入&#39;yes&#39;就可以了，但如果换做是集群，工作量还是很大的，所以需要配置免密登录方式。</p>
+    <h5>2.2. 在本机生成公钥和私钥，输入指令：</h5>
+    <pre><code class='language-shell' lang='shell'>$ ssh-keygen -t rsa
+    </code></pre>
+    <p>会在 ~/.ssh 文件夹下生成两个文件，在路径输入时，将文件名设置为<strong>hadoop_rsa</strong>，然后还会生成 另一个　<strong>hadoop_rsa.pub</strong> ，分别为私钥和公钥文件。</p>
+    <h5>2.3. 导入公钥到认证文件，并更改权限：</h5>
+    <p>1) 导入本机：</p>
+    <pre><code class='language-shell' lang='shell'>$ cat ~/.ssh/hadoop_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+    </code></pre>
+    <p>2) 导入服务器(xxx表示当前主机的用户名)：</p>
+    <p>	首先将公钥复制到服务器：</p>
+    <pre><code class='language-shell' lang='shell'>$ scp ~/.ssh/hadoop_rsa.pub xxx@localhost:/home/xxx/.ssh/hadoop_rsa.pub
+    </code></pre>
+    <p>	然后将公钥导入到认证文件当中，这一步操作在服务器上进行:</p>
+    <pre><code class='language-shell' lang='shell'>$ ssh localhost
+    $ cst ~/hadoop_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+    </code></pre>
+    <p>	最后在服务器上修改权限:</p>
+    <pre><code class='language-shell' lang='shell'>$ chmod 700 ~/.ssh
+    $ chmod 600 ~/.ssh
+    </code></pre>
+    <p>3) 测试：<code>$ ssh localhost</code>　第一次输入yes,之后就不需要了。</p>
+    <h3>３.Hadoop的安装</h3>
+    <h5>3.1. 在<a href='http://hadoop.apache.org/releases.html'>hadoop官网</a>，下载hadoop安装包，在这里我是用的是hadoop-2.10.1，选择binary下载即可。</h5>
+    <h5>3.2. 将下载的文件解压，然后移动到目的文件夹：</h5>
+    <pre><code class='language-shell' lang='shell'>$ tar -zvxf hadoop-2.10.1.tar.gz
+    $ mv ./hadoop-2.10.1 /opt/hadoop
+    </code></pre>
+    <h5>3.3. 创建hadoop用户和组，并授予执行权限:</h5>
+    <pre><code class='language-shell' lang='shell'>$ sudo addgroup hadoop
+    $ sudo usermod -a -G hadoop xxx
+    </code></pre>
+    <p>接下来需要将hadoop组加入到sudoers当中，这里需要赋予当前用户对etc/sudoers文件的写权限(操作方式在文章底部) 。授予写权限之后，使用指令打开文件进行编辑。</p>
+    <pre><code class='language-shell' lang='shell'>$ sudo gedit /etc/sudoers
+    </code></pre>
+    <p><img src='file:///home/life/Git/myHexo/52-Hetrz.github.io/images/Ubuntu_install_Hadoop/1626076268945.png' alt='1626076268945' referrerPolicy='no-referrer' /></p>
+    <p>在文件中　<strong>root	ALL=(ALL:ALL)	ALL</strong>　之后添加　<strong>hadoop	ALL=(ALL:ALL)	ALL</strong>　内容，保存并退出。</p>
+    <p>然后在shell中输入指令：</p>
+    <pre><code class='language-shell' lang='shell'>$ sudo chmod -R 755 /opt/hadoop
+    $ sudo chmod -R xxx:hadoop /opt/hadoop
+    </code></pre>
+    <h5>3.4. 修改配置文件，可以选择修改文件 /etc/profile</h5>
+    <pre><code class='language-shell' lang='shell'>$ sudo gedit /etc/profile
+    </code></pre>
+    <p>在文件末尾添加如下的信息（这里的　HADOOP_HOME　和　JAVA_HOME　取决于自己系统上安装的文件位置，JAVA_HOME及在上文安装jdk时，jdk文件安装的位置)</p>
+    <pre><code>export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+    export HADOOP_HOME=/opt/hadoop/hadoop-2.10.1
+    export PATH=.:${JAVA_HOME}/bin:${HADOOP_HOME}/bin:$PATH
+    </code></pre>
+    <p>保存后退出，并在shell中输入下面指令，是的配置文件可以立即生效</p>
+    <pre><code class='language-shell' lang='shell'>source /etc/hadoop
+    </code></pre>
+    <h5>3.5 测试是否配置成功</h5>
+    <pre><code class='language-shell' lang='shell'>hadoop version
+    </code></pre>
+    <p><img src='file:///home/life/Git/myHexo/52-Hetrz.github.io/images/Ubuntu_install_Hadoop/2021-07-12%2016-17-15%20%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png' alt='' referrerPolicy='no-referrer' /></p>
+    <h5>3.6. hadoop单击配置(非分布式模式)，通过测试demo(一个文字统计部分)来检查配置是否正确</h5>
+    <pre><code class='language-shell' lang='shell'>cd /opt/hadoop/hadoop-2.10.1
+    mkdir input
+    cp README.text input
+    bin/hadoop jar share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-2.7.3-sources.jar org.apache.hadoop.examples.WordCount input output
+    </code></pre>
+    <p><img src='file:///home/life/Git/myHexo/52-Hetrz.github.io/images/Ubuntu_install_Hadoop/2021-07-12%2016-34-07%20%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png' alt='' referrerPolicy='no-referrer' /></p>
+    <h5>3.7. hadoop伪分布式配置</h5>
+    <p>伪分布式配置只需要修改core-site.xml 和 hdfs-site.xml 两个文件就足够了，这两个文件都在 hadoop-2.10.1/etc/hadoop 文件夹中。</p>
+    <p>首先是core-site.xml,这是为了设置临时目录位置，否则会默认在/tmp/hadoo-hadoop中，这个文件夹在重启时可能会被系统清除，所以需要改变配置路径:</p>
+    <pre><code class='language-html' lang='html'>&lt;configuration&gt;
+            &lt;property&gt;
+                 &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
+                 &lt;value&gt;file:/opt/hadoop/tmp&lt;/value&gt;
+                 &lt;description&gt;Abase for other temporary directories.&lt;/description&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                 &lt;name&gt;fs.defaultFS&lt;/name&gt;
+                 &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;
+            &lt;/property&gt;
+    &lt;/configuration&gt;
+    </code></pre>
+    <p>然后是hdfs-site.xml文件，伪分布式只有一个节点，所以必须配置成１，还配置了datanode和namenode的节点位置。</p>
+    <pre><code class='language-html' lang='html'>&lt;configuration&gt;
+            &lt;property&gt;
+                 &lt;name&gt;dfs.replication&lt;/name&gt;
+                 &lt;value&gt;1&lt;/value&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                 &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+                 &lt;value&gt;file:/opt/hadoop/tmp/dfs/name&lt;/value&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                 &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
+                 &lt;value&gt;file:/opt/hadoop/tmp/dfs/data&lt;/value&gt;
+            &lt;/property&gt;
+    &lt;/configuration&gt;
+    </code></pre>
+    <p>在hadoop-2.10.1文件下执行以下指令</p>
+    <p>首先执行format指令，格式化namenode: </p>
+    <pre><code class='language-shell' lang='shell'>$ ./bin/hdfs namenode -fomat
+    </code></pre>
+    <p>然后开启hdfs，:</p>
+    <pre><code class='language-shell' lang='shell'>$ ./sbin/start-dfs.sh
+    </code></pre>
+    <p>输入<strong>jps</strong>来查看节点信息：</p>
+    <p><img src='file:///home/life/Git/myHexo/52-Hetrz.github.io/images/Ubuntu_install_Hadoop/1626084100254.png' alt='1626084100254' referrerPolicy='no-referrer' /></p>
+    <p>访问<a href='http://localhost:50070'>http://localhost:50070</a>来查看节点信息。</p>
+    <p><img src='file:///home/life/Git/myHexo/52-Hetrz.github.io/images/Ubuntu_install_Hadoop/1626084194654.png' alt='1626084194654' referrerPolicy='no-referrer' /></p>
+    <p>关闭hdfs:</p>
+    <pre><code class='language-shell' lang='shell'>$ ./sbin/stop-dfs.sh
+    </code></pre>
+    <h5>3.7. mapreduce配置</h5>
+    <p>修改etc/hadoop文件下的mapred-site.xml.template  和　yarn-site.xml文件。</p>
+    <p>修改mapred-site.xml.template:</p>
+    <pre><code class='language-xml' lang='xml'>        &lt;property&gt;
+                 &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
+                 &lt;value&gt;yarn&lt;/value&gt;
+            &lt;/property&gt;
+    </code></pre>
+    <p>修改yarn-site.xml</p>
+    <pre><code class='language-xml' lang='xml'>        &lt;property&gt;
+                 &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+                 &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+             &lt;/property&gt;
+    </code></pre>
+    <h5>3.8 启动yarn</h5>
+    <p>首先要启动hdfs，然后在执行<code>$ ./sbin/start<span style='font-family:"Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif'>-</span>yarn.sh</code></p>
+    <p><img src='file:///home/life/Git/myHexo/52-Hetrz.github.io/images/Ubuntu_install_Hadoop/1626084605148.png' alt='1626084605148' referrerPolicy='no-referrer' /></p>
+    <p>开启历史服务器，这样可以在web界面中查看任务运行情况：</p>
+    <p><code>$ ./sbin/mr<span style='font-family:"Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif'>-</span>jobhistory<span style='font-family:"Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif'>-</span>daemon.sh start historyserver</code></p>
+    <p>不启用 YARN 时，是 “mapred.LocalJobRunner” 在跑任务，</p>
+    <p>启用 YARN 之后，是“mapred.YARNRunner” 在跑任务。启动 YARN 有个好处是可以通过 Web 界面查看任务的运行情况：<a href='http://localhost:8088/cluster' target='_blank' class='url'>http://localhost:8088/cluster</a> 。</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <h3>添加用户对souders文件的修改权限： </h3>
+    <ol>
+    <li><p>重启系统，在启动时按住F12，进入系统选择界面。</p>
+    </li>
+    <li><p>因为我装的双系统，所以会出现Ubuntu和Windows两个选项，这里选择Ubuntu，进入Ubuntu系统的选项界面。</p>
+    </li>
+    <li><p>然后进入当前界面的<strong>&quot;高级选项&quot;</strong>部分，找到<strong>&quot;Ubuntu (Recover Mode)&quot;</strong>,选择该项，回车进入恢复模式。</p>
+    </li>
+    <li><p>进入恢复模式之后，会有如下的选项：</p>
+    <ul>
+    <li>resume</li>
+    <li>clean</li>
+    <li>dokg</li>
+    <li>fsck</li>
+    <li>grub</li>
+    <li>netroot</li>
+    <li>root</li>
+    <li>xifx</li>
+    
+    </ul>
+    </li>
+    <li><p>选择root，进入试用root用户进行系统回复，可以执行超级用户权限的操作。</p>
+    </li>
+    <li><p>回车之后，可以在显示屏底部看到如下的命令提示符了</p>
+    <p><code>root@TUZKI:~#</code></p>
+    </li>
+    <li><p>然后赋予对/etc/sudoers文件的写权限</p>
+    <p><code>chmod u+w /etc/sudoers</code></p>
+    </li>
+    <li><p>然后退出恢复模式，重启进入Ubuntu系统。</p>
+    </li>
+    
+    </ol>
+    <p>[sudoers]: </p>
+
+
+<div class="lx-navigation">
+	<div class="lx-cover prev lx-cover-sm" style="background-image: url(/images/footer6.JPG)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2019/10/20/Plan1/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Next</span>
+						<h3>Plan_one</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+        <div class="lx-cover next lx-cover-sm" style="background-image: url(/images/footer5.JPG)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2019/10/16/MyHexo/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Prev</span>
+						<h3>MyHexo</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
+</div>
+
+<footer>
+  <div>
+  Copyright &copy; 2019.<a href="/">Good Life</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.blleng.cn" target="_blank">Lx</a><br>
+  </div>
+</footer>
+</div>
+
+<button class="menu-trigger"></button>
+<div class="menu">
+  <div class="menu-head">
+    <span class="layer">
+      <div class="col">
+        <div class="row for-pic">
+          <div class="profile-pic">
+            <a href="/"><img src="/images/head1.JPG" alt="Life"></a>
+          </div>
+        </div>
+        <div class="row for-name">
+          <p>Life</p>
+          <span class="tagline">心中有爱</span>
+        </div>
+      </div>
+    </span>
+  </div>
+  <nav class="menu-container">
+  <ul class="menu-items">
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>首页</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-bookmark fa-fw"></i>页面</span>
+        <ul>
+          <li><a href="/guestbook">留言</a></li>
+        <li><a href="/about">关于</a></li>
+        </ul>
+    </li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-link fa-fw"></i>友链</span>
+        <ul>
+          <li> <a href="https://lx.blleng.cn" target="_blank">Theme-Lx</a></li>
+        </ul>
+    </li>
+  </ul>
+  </nav>
+</div>
+
+
+
+
+<div class="gototop js-top">
+  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="/js/jquery.easing.min.js"></script>
+<script src="/js/jquery.waypoints.min.js"></script>
+<script src="/js/jquery.stellar.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

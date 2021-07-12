@@ -94,7 +94,7 @@ $ sudo addgroup hadoop
 $ sudo usermod -a -G hadoop xxx
 ```
 
-接下来需要将hadoop组加入到sudoers当中，这里需要[赋予当前用户对etc/sudoers文件的写权限](#souders) 。授予写权限之后，使用指令打开文件进行编辑。
+接下来需要将hadoop组加入到sudoers当中，这里需要赋予当前用户对etc/sudoers文件的写权限(操作方式在文章底部) 。授予写权限之后，使用指令打开文件进行编辑。
 
 ```shell
 $ sudo gedit /etc/sudoers
@@ -189,11 +189,75 @@ bin/hadoop jar share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-2.7.3-so
 </configuration>
 ```
 
+在hadoop-2.10.1文件下执行以下指令
+
+首先执行format指令，格式化namenode: 
+
+```shell
+$ ./bin/hdfs namenode -fomat
+```
+
+然后开启hdfs，:
+
+```shell
+$ ./sbin/start-dfs.sh
+```
+
+输入**jps**来查看节点信息：
+
+![1626084100254](../images/Ubuntu_install_Hadoop/1626084100254.png)
+
+访问[http://localhost:50070](http://localhost:50070)来查看节点信息。
+
+![1626084194654](../images/Ubuntu_install_Hadoop/1626084194654.png)
+
+关闭hdfs:
+
+```shell
+$ ./sbin/stop-dfs.sh
+```
+
+##### 3.7. mapreduce配置
+
+修改etc/hadoop文件下的mapred-site.xml.template  和　yarn-site.xml文件。
+
+修改mapred-site.xml.template:
+
+```xml
+        <property>
+             <name>mapreduce.framework.name</name>
+             <value>yarn</value>
+        </property>
+```
+
+修改yarn-site.xml
+
+```xml
+        <property>
+             <name>yarn.nodemanager.aux-services</name>
+             <value>mapreduce_shuffle</value>
+         </property>
+```
+
+##### 3.8 启动yarn
+
+首先要启动hdfs，然后在执行`$ ./sbin/start-yarn.sh`
+
+![1626084605148](../images/Ubuntu_install_Hadoop/1626084605148.png)
+
+开启历史服务器，这样可以在web界面中查看任务运行情况：
+
+`$ ./sbin/mr-jobhistory-daemon.sh start historyserver`
+
+不启用 YARN 时，是 “mapred.LocalJobRunner” 在跑任务，
+
+启用 YARN 之后，是“mapred.YARNRunner” 在跑任务。启动 YARN 有个好处是可以通过 Web 界面查看任务的运行情况：http://localhost:8088/cluster 。
 
 
 
 
-### souders {#souders}
+
+### 添加用户对souders文件的修改权限： 
 
 1. 重启系统，在启动时按住F12，进入系统选择界面。
 
