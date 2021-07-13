@@ -100,7 +100,7 @@ $ sudo usermod -a -G hadoop xxx
 $ sudo gedit /etc/sudoers
 ```
 
-![1626076268945](../../images/Ubuntu_install_Hadoop/1626076268945.png)
+![1626076268945](/images/Ubuntu_install_Hadoop/1626076268945.png)
 
 在文件中　**root	ALL=(ALL:ALL)	ALL**　之后添加　**hadoop	ALL=(ALL:ALL)	ALL**　内容，保存并退出。
 
@@ -137,7 +137,7 @@ source /etc/hadoop
 hadoop version
 ```
 
-![](../../images/Ubuntu_install_Hadoop/2021-07-12 16-17-15 的屏幕截图.png)
+![](/images/Ubuntu_install_Hadoop/2021-07-12 16-17-15 的屏幕截图.png)
 
 ##### 3.6. hadoop单击配置(非分布式模式)，通过测试demo(一个文字统计部分)来检查配置是否正确
 
@@ -148,7 +148,7 @@ cp README.text input
 bin/hadoop jar share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-2.7.3-sources.jar org.apache.hadoop.examples.WordCount input output
 ```
 
-![](../../images/Ubuntu_install_Hadoop/2021-07-12 16-34-07 的屏幕截图.png)
+![](/images/Ubuntu_install_Hadoop/2021-07-12 16-34-07 的屏幕截图.png)
 
 ##### 3.7. hadoop伪分布式配置
 
@@ -205,11 +205,11 @@ $ ./sbin/start-dfs.sh
 
 输入**jps**来查看节点信息：
 
-![1626084100254](../../images/Ubuntu_install_Hadoop/1626084100254.png)
+![1626084100254](/images/Ubuntu_install_Hadoop/1626084100254.png)
 
 访问[http://localhost:50070](http://localhost:50070)来查看节点信息。
 
-![1626084194654](../../images/Ubuntu_install_Hadoop/1626084194654.png)
+![1626084194654](/images/Ubuntu_install_Hadoop/1626084194654.png)
 
 关闭hdfs:
 
@@ -243,7 +243,7 @@ $ ./sbin/stop-dfs.sh
 
 首先要启动hdfs，然后在执行`$ ./sbin/start-yarn.sh`
 
-![1626084605148](../../images/Ubuntu_install_Hadoop/1626084605148.png)
+![1626084605148](/images/Ubuntu_install_Hadoop/1626084605148.png)
 
 开启历史服务器，这样可以在web界面中查看任务运行情况：
 

@@ -8,11 +8,11 @@ $sudo apt-get install openjdk-8-jdk
 <pre><code class='language-shell' lang='shell'>$ sudo update-alternatives --config java
 $ sudo update-alternatives --config javac
 </code></pre>
-<p><img src='../../images/Ubuntu_install_Hadoop/1626059601042.png' alt='1626059601042' referrerPolicy='no-referrer' /></p>
+<p><img src='/images/Ubuntu_install_Hadoop/1626059601042.png' alt='1626059601042' referrerPolicy='no-referrer' /></p>
 <h4>1.3. 查看系统安装的的java版本</h4>
 <pre><code class='language-shell' lang='shell'>$ java -version
 </code></pre>
-<p><img src='../../images/Ubuntu_install_Hadoop/1626059692491.png' alt='1626059692491' referrerPolicy='no-referrer' /></p>
+<p><img src='/images/Ubuntu_install_Hadoop/1626059692491.png' alt='1626059692491' referrerPolicy='no-referrer' /></p>
 <h3>2. 配置SSH及免密登录方式</h3>
 <h4>2.1. hadoop需要使用SSH的方式登录，Linux下需要安装SSH.在此只需要安装服务端就可以了：</h4>
 <pre><code class='language-shell' lang='shell'>$ sudo apt-get install openssh-server
@@ -52,7 +52,7 @@ $ sudo usermod -a -G hadoop xxx
 <p>接下来需要将hadoop组加入到sudoers当中，这里需要赋予当前用户对etc/sudoers文件的写权限(操作方式在文章底部) 。授予写权限之后，使用指令打开文件进行编辑。</p>
 <pre><code class='language-shell' lang='shell'>$ sudo gedit /etc/sudoers
 </code></pre>
-<p><img src='../../images/Ubuntu_install_Hadoop/1626076268945.png' alt='1626076268945' referrerPolicy='no-referrer' /></p>
+<p><img src='/images/Ubuntu_install_Hadoop/1626076268945.png' alt='1626076268945' referrerPolicy='no-referrer' /></p>
 <p>在文件中　<strong>root	ALL=(ALL:ALL)	ALL</strong>　之后添加　<strong>hadoop	ALL=(ALL:ALL)	ALL</strong>　内容，保存并退出。</p>
 <p>然后在shell中输入指令：</p>
 <pre><code class='language-shell' lang='shell'>$ sudo chmod -R 755 /opt/hadoop
@@ -72,14 +72,14 @@ export PATH=.:${JAVA_HOME}/bin:${HADOOP_HOME}/bin:$PATH
 <h4>3.5 测试是否配置成功</h4>
 <pre><code class='language-shell' lang='shell'>hadoop version
 </code></pre>
-<p><img src='../../images/Ubuntu_install_Hadoop/2021-07-12%2016-17-15%20%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png' alt='' referrerPolicy='no-referrer' /></p>
+<p><img src='/images/Ubuntu_install_Hadoop/2021-07-12%2016-17-15%20%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png' alt='' referrerPolicy='no-referrer' /></p>
 <h4>3.6. hadoop单击配置(非分布式模式)，通过测试demo(一个文字统计部分)来检查配置是否正确</h4>
 <pre><code class='language-shell' lang='shell'>cd /opt/hadoop/hadoop-2.10.1
 mkdir input
 cp README.text input
 bin/hadoop jar share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-2.7.3-sources.jar org.apache.hadoop.examples.WordCount input output
 </code></pre>
-<p><img src='../../images/Ubuntu_install_Hadoop/2021-07-12%2016-34-07%20%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png' alt='' referrerPolicy='no-referrer' /></p>
+<p><img src='/images/Ubuntu_install_Hadoop/2021-07-12%2016-34-07%20%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png' alt='' referrerPolicy='no-referrer' /></p>
 <h4>3.7. hadoop伪分布式配置</h4>
 <p>伪分布式配置只需要修改core-site.xml 和 hdfs-site.xml 两个文件就足够了，这两个文件都在 hadoop-2.10.1/etc/hadoop 文件夹中。</p>
 <p>首先是core-site.xml,这是为了设置临时目录位置，否则会默认在/tmp/hadoo-hadoop中，这个文件夹在重启时可能会被系统清除，所以需要改变配置路径:</p>
@@ -119,9 +119,9 @@ bin/hadoop jar share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-2.7.3-so
 <pre><code class='language-shell' lang='shell'>$ ./sbin/start-dfs.sh
 </code></pre>
 <p>输入<strong>jps</strong>来查看节点信息：</p>
-<p><img src='../../images/Ubuntu_install_Hadoop/1626084100254.png' alt='1626084100254' referrerPolicy='no-referrer' /></p>
+<p><img src='/images/Ubuntu_install_Hadoop/1626084100254.png' alt='1626084100254' referrerPolicy='no-referrer' /></p>
 <p>访问<a href='http://localhost:50070'>http://localhost:50070</a>来查看节点信息。</p>
-<p><img src='../../images/Ubuntu_install_Hadoop/1626084194654.png' alt='1626084194654' referrerPolicy='no-referrer' /></p>
+<p><img src='/images/Ubuntu_install_Hadoop/1626084194654.png' alt='1626084194654' referrerPolicy='no-referrer' /></p>
 <p>关闭hdfs:</p>
 <pre><code class='language-shell' lang='shell'>$ ./sbin/stop-dfs.sh
 </code></pre>
@@ -141,7 +141,7 @@ bin/hadoop jar share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-2.7.3-so
 </code></pre>
 <h4>3.8 启动yarn</h4>
 <p>首先要启动hdfs，然后在执行<code>$ ./sbin/start<span style='font-family:"Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif'>-</span>yarn.sh</code></p>
-<p><img src='../../images/Ubuntu_install_Hadoop/1626084605148.png' alt='1626084605148' referrerPolicy='no-referrer' /></p>
+<p><img src='/images/Ubuntu_install_Hadoop/1626084605148.png' alt='1626084605148' referrerPolicy='no-referrer' /></p>
 <p>开启历史服务器，这样可以在web界面中查看任务运行情况：</p>
 <p><code>$ ./sbin/mr<span style='font-family:"Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif'>-</span>jobhistory<span style='font-family:"Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif'>-</span>daemon.sh start historyserver</code></p>
 <p>不启用 YARN 时，是 “mapred.LocalJobRunner” 在跑任务，</p>
