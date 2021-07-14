@@ -96,45 +96,45 @@
   </ul>
   <h4 ><strong>1.2. 集群结构</strong></h4>
   <p style="text-align: center;"><img src="/images/hadoop_introduction/image-20210713222533067.png" referrerpolicy="no-referrer"></p>
-  <textarea>		一个集群部署在局域网的环境中，节点(node)之间通过交换机(switch)连接，多台节点以机架(Rack)为单位组织起来，多个机架组成一个数据中心(DC)。</textarea>
+  <p>		一个集群部署在局域网的环境中，节点(node)之间通过交换机(switch)连接，多台节点以机架(Rack)为单位组织起来，多个机架组成一个数据中心(DC)。</p>
   <h4 ><strong>1.3. 物理部署</strong></h4>
   <p style="text-align: center;"><img src="/images/hadoop_introduction/image-20210713222908772.png" referrerpolicy="no-referrer" alt="image-20210713222908772"></p>
-  <textarea>		实际的Hadoop系统必须运行在Linux系统上，Namenode会有一个离线备份(Secondary Namenode)</textarea>
+  <p>		实际的Hadoop系统必须运行在Linux系统上，Namenode会有一个离线备份(Secondary Namenode)</p>
   <h4 ><strong>2. HDFS(Hadoop Distributed File System)</strong></h4>
-  <textarea>		HDFS是Hadoop使用的一个主存储系统。HDFS创建多重备份的数据块，并将这些数据快分布在集群中的计算机节点上，以此来实现高可靠性以及高速运算能力。</textarea>
+  <p>		HDFS是Hadoop使用的一个主存储系统。HDFS创建多重备份的数据块，并将这些数据快分布在集群中的计算机节点上，以此来实现高可靠性以及高速运算能力。</p>
   <h4 ><strong>2.1. 单机操作系统对磁盘空间的管理</strong></h4>
   <p style="text-align: center;"><img src="/images/hadoop_introduction/image-20210713223813885.png" referrerpolicy="no-referrer" alt="image-20210713223813885"></p>
-  <textarea>		在查找数据时，从文件夹中读取对应文件的第一个数据块的编号，找到该数据之后继续根据FAT表中的数据查找下一个数据块。</textarea>
+  <p>		在查找数据时，从文件夹中读取对应文件的第一个数据块的编号，找到该数据之后继续根据FAT表中的数据查找下一个数据块。</p>
   <h4 ><strong>2.2. HDFS的主从结构</strong></h4>
   <ul>
   <li>主节点，只有一个：namenode</li>
   <li>从节点，有很多个：datanode</li>
   
   </ul>
-  <figure><table>
+  <table style="text-align: center;" border="1">
   <thead>
   <tr><th>Namenode</th><th>DataNode</th></tr></thead>
   <tbody><tr><td>存储元数据</td><td>存储文件内容</td></tr><tr><td>源数据保存在内存中</td><td>文件内容保存在磁盘</td></tr><tr><td>保存&quot;文件&quot;-&quot;block&quot;-&quot;datanode&quot;之间的映射关系</td><td>维护了&quot;block id&quot; 到  &quot;datanode&quot;本地文件的映射关系</td></tr></tbody>
-  </table></figure>
+  </table>
   <h4 ><strong>2.3. HDFS中的文件</strong></h4>
-  <textarea>		文件切分成块（block,默认大小为64M），以块为单位，每个块有多个副本存储在不同的机器上，副本数可以在文件生成是指定（默认为3）。
+  <p>		文件切分成块（block,默认大小为64M），以块为单位，每个块有多个副本存储在不同的机器上，副本数可以在文件生成是指定（默认为3）。
     NameNode是主节点，存储文件的元数据，如文件名、文件目录结构、文件属性（生成时间，副本数，文件权限）、每个文件的块列表以及块所在的DataNode等信息。
 DataNode在本地文件系统存储文件块数据以及块数据的校验和。
-可以创建、删除、移动或重命名文件，但当文件创建、写入和关闭之后不可以再修改文件内容。</textarea>
+可以创建、删除、移动或重命名文件，但当文件创建、写入和关闭之后不可以再修改文件内容。</p>
   <h4 ><strong>NameNode</strong> </h4>
-  <textarea>		NameNode是一个中心服务器，单一节点（简化系统的设计和实现），负责管理文件系统的命名空间以及客户端对文件的访问。
+  <p>		NameNode是一个中心服务器，单一节点（简化系统的设计和实现），负责管理文件系统的命名空间以及客户端对文件的访问。
 NameNode负责文件元数据的操作，DataNode负责处理文件内容的读写请求，与文件内容相关的数据流不经过NameNode，只会询问NameNode要读写的文件跟哪一个DataNode关联。
 副本存放在哪些DataNode上由NameNode来控制，根据全局情况做出放置决定。读取文件时，NameNode尽量让用户读取最近的副本，以此来降低带块的消耗和读取时延。
-NameNode全权管理数据块的复制，他周期性地从集群中的DataNode接收Heartbeat信号和Blockreport块状态报告。接收到Heartbeat信号意味着该DataNode节点正常工作，Blockreport包含了该DataNode上所有数据块的列表。</textarea>
+NameNode全权管理数据块的复制，他周期性地从集群中的DataNode接收Heartbeat信号和Blockreport块状态报告。接收到Heartbeat信号意味着该DataNode节点正常工作，Blockreport包含了该DataNode上所有数据块的列表。</p>
   <h4 ><strong> DataNode</strong></h4>
-  <textarea>		一个数据块在DataNode中以本地文件的形式存储在磁盘上，包括两个文件，一个是数据本身，一个是元数据包括数据块的长度、块数据的校验和以及时间戳。
+  <p>		一个数据块在DataNode中以本地文件的形式存储在磁盘上，包括两个文件，一个是数据本身，一个是元数据包括数据块的长度、块数据的校验和以及时间戳。
 DataNode启动后向NameNode注册，通过之后，DataNode周期性（1小时）地向NameNode上报所有的块信息。
 Heartbeat信号每3秒一次，HeartBeat返回的结果带有NameNode给该DataNode的命令，如复制数据块到另一台机器或删除某个数据块。如果超过10分钟没有收到某个DataNode的Heartbeat，则认为该节点不可用。
-集群运行中可以安全加入和退出一些机器。</textarea>
+集群运行中可以安全加入和退出一些机器。</p>
   <h3 >3. MapReduce</h3>
-  <textarea>		MapReduce是一种编程模型，它实现了超大集群上的简单数据处理。
+  <p>		MapReduce是一种编程模型，它实现了超大集群上的简单数据处理。
 MR由两个阶段组成：Map和Reduce。用户可以指定一个map函数来处理一个key-value键值对，从而产生中间键值对集，然后再指定一个reduce函数来合并相同中间key的中间value。
-用户只需要实现map()和reduce()两个函数，即可实现分布式计算，用户只需要专注于领域知识，解决领域问题，而无需考虑分布式计算底层细节，如网络通信、任务分发、任务调度等问题。</textarea>
+用户只需要实现map()和reduce()两个函数，即可实现分布式计算，用户只需要专注于领域知识，解决领域问题，而无需考虑分布式计算底层细节，如网络通信、任务分发、任务调度等问题。</p>
   <h4 >3.1. MapReduce的架构</h4>
   <ul>
   <li><p><strong>主从结构</strong>：</p>
@@ -191,8 +191,8 @@ MR由两个阶段组成：Map和Reduce。用户可以指定一个map函数来处
   </li>
   
   </ol>
-  <p><strong>Map、Reduce输入输出的键值对格式</strong></p>
-  <table border="1">
+  <p style="text-align: center;"><strong>Map、Reduce输入输出的键值对格式</strong></p>
+  <table border="1" style="text-align: center;">
   <thead>
   <tr><th>函数</th><th>输入键值对</th><th>输出键值对</th></tr></thead>
   <tbody><tr><td>map()</td><td>&lt;k1, v1&gt;</td><td>&lt;k2,v2&gt;</td></tr>
@@ -230,7 +230,7 @@ MR由两个阶段组成：Map和Reduce。用户可以指定一个map函数来处
   }
   </code></pre>
   <p><strong>实现Reduce</strong></p>
-  <code class='language-java' lang='java'>public class WordCount{
+  <pre><code class='language-java' lang='java'>public class WordCount{
       //Reduce类要继承Reducer&lt;Text, IntWriable, Text IntWritable&gt;
       public static class IntSumReducer extends Reducer&lt;Text, IntWriable, Text IntWritable&gt;{
           private IntWritable result = new IntWritable();
@@ -255,7 +255,7 @@ MR由两个阶段组成：Map和Reduce。用户可以指定一个map函数来处
       }
       //其他代码
   }
-  </code>
+  </code></pre>
   <p>&nbsp;</p>
       </div>
     </div>
