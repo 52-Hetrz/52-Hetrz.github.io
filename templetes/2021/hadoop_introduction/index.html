@@ -65,7 +65,7 @@
         </h2>
         
   <h2 >hadoop 介绍</h2>
-  <h4 >1. 物理分布的Hadoop集群 </h4>
+  <h3 ><strong>物理分布的Hadoop集群</strong>  </h3>
   <h4 >1.1. 分布集群</h4>
   <p style="text-align: center;"><img src="/images/hadoop_introduction/image-20210713222347214.png" referrerpolicy="no-referrer" alt="image-20210713222347214"></p>
   <p><strong>namenode</strong>:</p>
@@ -100,7 +100,7 @@
   <h4 ><strong>1.3. 物理部署</strong></h4>
   <p style="text-align: center;"><img src="/images/hadoop_introduction/image-20210713222908772.png" referrerpolicy="no-referrer" alt="image-20210713222908772"></p>
   <p>		实际的Hadoop系统必须运行在Linux系统上，Namenode会有一个离线备份(Secondary Namenode)</p>
-  <h4 ><strong>2. HDFS(Hadoop Distributed File System)</strong></h4>
+  <h3 ><strong>2. HDFS(Hadoop Distributed File System)</strong></h3>
   <p>		HDFS是Hadoop使用的一个主存储系统。HDFS创建多重备份的数据块，并将这些数据快分布在集群中的计算机节点上，以此来实现高可靠性以及高速运算能力。</p>
   <h4 ><strong>2.1. 单机操作系统对磁盘空间的管理</strong></h4>
   <p style="text-align: center;"><img src="/images/hadoop_introduction/image-20210713223813885.png" referrerpolicy="no-referrer" alt="image-20210713223813885"></p>
@@ -111,7 +111,7 @@
   <li>从节点，有很多个：datanode</li>
   
   </ul>
-  <table style="text-align: center;" border="1" margin="auto">
+  <table style="text-align: center;" border="1" margin="0 auto">
   <thead>
   <tr><th>Namenode</th><th>DataNode</th></tr></thead>
   <tbody><tr><td>存储元数据</td><td>存储文件内容</td></tr><tr><td>源数据保存在内存中</td><td>文件内容保存在磁盘</td></tr><tr><td>保存&quot;文件&quot;-&quot;block&quot;-&quot;datanode&quot;之间的映射关系</td><td>维护了&quot;block id&quot; 到  &quot;datanode&quot;本地文件的映射关系</td></tr></tbody>
@@ -135,7 +135,7 @@ Heartbeat信号每3秒一次，HeartBeat返回的结果带有NameNode给该DataN
   <p>		MapReduce是一种编程模型，它实现了超大集群上的简单数据处理。
 MR由两个阶段组成：Map和Reduce。用户可以指定一个map函数来处理一个key-value键值对，从而产生中间键值对集，然后再指定一个reduce函数来合并相同中间key的中间value。
 用户只需要实现map()和reduce()两个函数，即可实现分布式计算，用户只需要专注于领域知识，解决领域问题，而无需考虑分布式计算底层细节，如网络通信、任务分发、任务调度等问题。</p>
-  <h4 >3.1. MapReduce的架构</h4>
+  <h3>3.1. MapReduce的架构</h3>
   <ul>
   <li><p><strong>主从结构</strong>：</p>
   <ul>
@@ -171,28 +171,26 @@ MR由两个阶段组成：Map和Reduce。用户可以指定一个map函数来处
   <p style="text-align: center;"><img src="/images/hadoop_introduction/image-20210714004046185.png" referrerpolicy="no-referrer" alt="image-20210714004046185"></p>
   <p><strong>执行步骤</strong>:</p>
   <ol>
-  <li><p><strong>map任务处理：</strong></p>
+  <li><p><strong>map任务处理：</strong></p></li>
   <ol>
   <li>读取输入文件内容，对输入文件的每一行，解析成key-value对，对每一个键值对调用一次map函数。</li>
-  <li>使用自己的逻辑，对输入的key和value进行处理，转换成新的key-value输出。</li>
+      <li>使用自己的逻辑，对输入的key和value进行处理，转换成新的key-value输出。</li>
   <li>对输出的key-value进行分区</li>
   <li>对不同分区的的数据，按照key进行排序、分组。相同key的value放到一个集合当中，构成新的[key:list(value)]。</li>
   <li>（可选）对分组后的数据进行规约。</li>
-  
   </ol>
-  </li>
-  <li><p><strong>reduce任务处理：</strong></p>
+
+  <li><p><strong>reduce任务处理：</strong></p></li>
   <ol>
   <li>对多个map人物的输出，按照不同分区，通过网络复制到不同的reduce节点。</li>
   <li>对于多个map任务的输出进行合并、排序。写reduce函数的逻辑，对输入的key-value进行处理，转换成新的key-value输出。</li>
   <li>把reduce的输出保存到文件中。</li>
   
   </ol>
-  </li>
-  
   </ol>
+
   <p style="text-align: center;"><strong>Map、Reduce输入输出的键值对格式</strong></p>
-  <table border="1" style="text-align: center;" margin= "auto">
+  <table border="1" style="text-align: center;" margin= "0 auto">
   <thead>
   <tr><th>函数</th><th>输入键值对</th><th>输出键值对</th></tr></thead>
   <tbody><tr><td>map()</td><td>&lt;k1, v1&gt;</td><td>&lt;k2,v2&gt;</td></tr>
@@ -217,7 +215,7 @@ MR由两个阶段组成：Map和Reduce。用户可以指定一个map函数来处
           public void map(Object key, Text value, Context context) throws IOException, InterruptedExcepition{
               //将字符串分割为一个个的单词
               StringTokenizer itr = new StringTokenizer(value.toString());
-              while(itr.hasMorTokens()){
+              while(itr.hasMorTokens()){实现嵌套列表
                   //将token写入word
                   word.set(itr.nextToken());
                   //将键值对&lt;token, 1&gt;写入context,MR框架会将context中的键值对交给Reducer处理
