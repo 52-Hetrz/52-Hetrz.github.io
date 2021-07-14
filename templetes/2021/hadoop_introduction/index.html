@@ -111,7 +111,7 @@
   <li>从节点，有很多个：datanode</li>
   
   </ul>
-  <table style="text-align: center;" border="1">
+  <table style="text-align: center;" border="1" margin="auto">
   <thead>
   <tr><th>Namenode</th><th>DataNode</th></tr></thead>
   <tbody><tr><td>存储元数据</td><td>存储文件内容</td></tr><tr><td>源数据保存在内存中</td><td>文件内容保存在磁盘</td></tr><tr><td>保存&quot;文件&quot;-&quot;block&quot;-&quot;datanode&quot;之间的映射关系</td><td>维护了&quot;block id&quot; 到  &quot;datanode&quot;本地文件的映射关系</td></tr></tbody>
@@ -192,7 +192,7 @@ MR由两个阶段组成：Map和Reduce。用户可以指定一个map函数来处
   
   </ol>
   <p style="text-align: center;"><strong>Map、Reduce输入输出的键值对格式</strong></p>
-  <table border="1" style="text-align: center;">
+  <table border="1" style="text-align: center;" margin= "auto">
   <thead>
   <tr><th>函数</th><th>输入键值对</th><th>输出键值对</th></tr></thead>
   <tbody><tr><td>map()</td><td>&lt;k1, v1&gt;</td><td>&lt;k2,v2&gt;</td></tr>
