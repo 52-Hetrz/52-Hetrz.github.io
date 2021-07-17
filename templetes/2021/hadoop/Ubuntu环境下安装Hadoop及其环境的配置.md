@@ -1,3 +1,7 @@
+---
+typora-root-url: ../../../
+---
+
 ## Ubuntu环境下安装Hadoop及其环境的配置
 
 ### 1. 安装JAVA OpenJDK8
@@ -16,7 +20,7 @@ $ sudo update-alternatives --config java
 $ sudo update-alternatives --config javac
 ```
 
-![1626059601042](../images/Ubuntu_install_Hadoop/1626059601042.png)
+![1626059601042](/images/Ubuntu_install_Hadoop/1626059601042.png)
 
 ##### 1.3. 查看系统安装的的java版本
 
@@ -24,7 +28,7 @@ $ sudo update-alternatives --config javac
 $ java -version
 ```
 
-![1626059692491](../images/Ubuntu_install_Hadoop/1626059692491.png)
+![1626059692491](images/Ubuntu_install_Hadoop/1626059692491.png)
 
 ### 2. 配置SSH及免密登录方式
 

@@ -1,5 +1,6 @@
 ---
 typora-root-url: ..\..\..
+typora-copy-images-to: ../../../images/HBase
 ---
 
 ## HBase
@@ -152,3 +153,118 @@ typora-root-url: ..\..\..
 * 在元数据中查找需要访问行所在的区域并定位提供该区域服务的区域服务器
 * 直接与区域服务器交互以获取数据
 * 根区域数据、元数据以及用户区域信息都被客户端缓存以备下次访问使用
+
+### 5. HBase安装及环境配置
+
+1. 在[HBase的清华镜像站](https://mirrors.tuna.tsinghua.edu.cn/apache/hbase/)下载对应的安装包，这里我选择使用hbase-1.6.0-bin.tar.gz
+
+![1626423716647](/images/HBase/1626423716647.png)
+
+2. 在/opt 文件目录下创建一个新的文件夹hbase，将压缩包移动到/opt/hbase目录下，然后解压到当前目录下：
+
+```shell
+$ cd /opt
+$ sudo mkdir hbase
+$ cd ~/下载
+$ sudo mv hbase-1.6.0-bin.tar.gz /opt/hbase
+$ sudo tar -zxvf hbase-1.6.0-bin.tar.gz
+$ sudo rm hbase-1.6.0-bin.tar.gz
+```
+
+![1626424436327](/images/HBase/1626424436327.png)
+
+3. 修改/etc/profile 文件
+
+```shell
+$ sudo gedit /etc/profile
+```
+
+![1626424583892](/images/HBase/1626424583892.png)
+
+增加信息:"**export HBASE_HOME=/opt/hbase/hbase-1.6.0** "(注意，＝　左右不要有空格)
+
+并在PATH尾部添加"**:$HBASE_HOME/bin**"
+
+![1626428118678](/images/HBase/1626428118678.png)
+
+保存退出，然后执行
+
+```shell
+$ source /etc/profile
+```
+
+4. 修改 hbase/config/hbase-env.sh文件，添加如下信息，然后保存退出：
+
+![1626425192571](/images/HBase/1626425192571.png)
+
+5. 修改config/hbase-site.xml文件，添加如下信息(hbase.rootdir中的主机端口号应该和hadoop的配置文件core-site.xml文件中fs.defaultFS的主机和端口号一致)：
+
+```xml
+	<property>
+  		<name>hbase.rootdir</name>
+	  	<value>hdfs://localhost:8020/hbase</value>
+	</property>
+	<property>
+  		<name>hbase.cluster.distributed</name>
+	  	<value>true</value>
+	</property>
+	<property>
+		<name>hbase.zookeeper.quorum</name>
+  		<value>hadoop0</value>
+	</property>
+	<property>
+  		<name>dfs.replication</name>
+  		<value>1</value>
+	</property>
+ 	<property>
+      		<name>hbase.tmp.dir</name>
+      		<value>/opt/hbase/tmp</value>
+   	</property>
+```
+
+6. 先启动hadoop，再启动hbase
+
+```shell
+$ sudo cd /opt/hadoop/hadoop-2.10.1
+$ sudo ./sbin/start-all.sh
+$ sudo cd opt/hbase/hbase-1.6.0
+$ sudo ./bin/start-hbase.sh
+```
+
+* 在启动时报了如下的警告：
+
+![1626426620984](/images/HBase/1626426620984.png)
+
+这是因为[“JDK 8兼容性指南”](http://www.oracle.com/technetwork/java/javase/8-compatibility-guide-2156366.html)  指出，在Java 8中，命令行标志  `MaxPermSize` 已被删除。原因是永久代从热点堆中被移除并被转移到本地内存。所以为了删除这条消息，编辑 hbase-env.sh，注释掉如下两个语句：
+
+![1626426701065](/images/HBase/1626426701065.png)
+
+![1626426713512](/images/HBase/1626426713512.png)
+
+* localhost拒绝连接
+
+![1626427302226](/images/HBase/1626427302226.png)
+
+编辑配置文件　/etc/ssh/sshd_config
+
+找到：PermitRootLogin prohibit-password在前面添加#
+ 		添加：PermitRootLogin yes
+
+![1626427455119](/images/HBase/1626427455119.png)
+
+然后重启服务：
+
+``$ sudo service ssh restart``
+
+* 期间还遇到了许多奇葩的问题，可以打开logs目录下的日志，找到报错位置，然后对应的搜索解决办法。
+
+7. 最后启动成功之后，输入jps仍然没有显示HMaster进程，但可以通过http://localhost:16010/master-status访问HBase界面。
+
+![1626496113792](/images/HBase/1626496113792.png)
+
+![1626496203886](/images/HBase/1626496203886.png)
+
+
+
+
+
