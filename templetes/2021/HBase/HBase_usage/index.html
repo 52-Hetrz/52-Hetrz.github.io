@@ -71,7 +71,7 @@
         </code></pre>
         <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626514543971.png" referrerpolicy="no-referrer" alt="1626514543971"></p>
         <h3 >1. 基本语法一览</h3>
-        <figure><table>
+        <figure><table style="text-align: center;" border="1" margin="0 auto">
         <thead>
         <tr><th>名称</th><th>命令表达式</th></tr></thead>
         <tbody>
@@ -102,21 +102,24 @@
             <tr><td>更新记录</td><td>就是重新一遍，进行覆盖，hbase没有修改，都是追加</td></tr></tbody>
         </table></figure>
         <h4 >查看状态</h4>
-        <pre><code class='language-shell' lang='shell'>hbase(main):001:0&gt;  status 
+        <pre><code class='language-shell' lang='shell'>
+        hbase(main):001:0&gt;  status 
         </code></pre>
         <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626514735704.png" referrerpolicy="no-referrer" alt="1626514735704"></p>
         <h4 >name_space（命名空间）</h4>
-        <pre><code class='language-shell' lang='shell'>hbase(main):002:0&gt; create_namespace &#39;test&#39;						//创建命名空间 &#39;test&#39;
-        hbase(main):003:0&gt; list_namespace										//列出所有的命名空间
-        hbase(main):004:0&gt; describe_namespace &#39;test&#39;				//查看命名空间&#39;test&#39;的描述
-        hbase(main):006:0&gt; list_namespace_tables &#39;default&#39;		//查看命名空间&#39;default&#39;下的所有表
-        hbase(main):007:0&gt; drop_namespace &#39;test&#39;						//删除命名空间&#39;test&#39;
-        hbase(main):008:0&gt; list_namespace										//查看命名空间
+        <pre><code class='language-shell' lang='shell'>
+        hbase(main):002:0&gt; create_namespace &#39;test&#39;						
+        hbase(main):003:0&gt; list_namespace										
+        hbase(main):004:0&gt; describe_namespace &#39;test&#39;				
+        hbase(main):006:0&gt; list_namespace_tables &#39;default&#39;		
+        hbase(main):007:0&gt; drop_namespace &#39;test&#39;					
+        hbase(main):008:0&gt; list_namespace										
         </code></pre>
         <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626515274123.png" referrerpolicy="no-referrer" alt="1626515274123"></p>
         <h4 >Table（表）</h4>
         <p>在创建表时，如果指定命名空间，则会将表创建在该命名空间下：</p>
-        <pre><code class='language-shell' lang='shell'>hbase(main):002:0&gt; create_namespace &#39;test&#39;
+        <pre><code class='language-shell' lang='shell'>
+        hbase(main):002:0&gt; create_namespace &#39;test&#39;
         hbase(main):003:0&gt; create &#39;test:test_table&#39;,&#39;test_row_key&#39;,&#39;test_column1&#39;,&#39;test_column2&#39;
         hbase(main):004:0&gt; list_namespace_tables &#39;test&#39;
         hbase(main):005:0&gt; desc &#39;test:test_table&#39;
@@ -129,7 +132,8 @@
         </code></pre>
         <h4 >记录</h4>
         <p>向表中插入数据</p>
-        <pre><code class='language-shell' lang='shell'>hbase(main):008:0&gt; put &#39;students&#39;,&#39;1&#39;,&#39;address:province&#39;,&#39;shandong&#39;
+        <pre><code class='language-shell' lang='shell'>
+        hbase(main):008:0&gt; put &#39;students&#39;,&#39;1&#39;,&#39;address:province&#39;,&#39;shandong&#39;
         hbase(main):009:0&gt; put &#39;students&#39;,&#39;1&#39;,&#39;address:country&#39;,&#39;weifang&#39;
         hbase(main):010:0&gt; put &#39;students&#39;,&#39;2&#39;,&#39;address:province&#39;,&#39;hunan&#39;
         hbase(main):011:0&gt; put &#39;students&#39;,&#39;2&#39;,&#39;info:age&#39;,&#39;20&#39;
@@ -137,23 +141,27 @@
         </code></pre>
         <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626516598910.png" referrerpolicy="no-referrer" alt="1626516598910"></p>
         <p>查看数据：</p>
-        <pre><code class='language-shell' lang='shell'>hbase(main):001:0&gt; get &#39;students&#39;,&#39;1&#39;
+        <pre><code class='language-shell' lang='shell'>
+        hbase(main):001:0&gt; get &#39;students&#39;,&#39;1&#39;
         hbase(main):002:0&gt; get &#39;students&#39;,&#39;2&#39;
         hbase(main):003:0&gt; scan &#39;students&#39;
         </code></pre>
         <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626516700042.png" referrerpolicy="no-referrer" alt="1626516700042"></p>
         <p>删除记录</p>
-        <pre><code class='language-shell' lang='shell'>hbase(main):004:0&gt; delete &#39;students&#39;,&#39;1&#39;,&#39;address:country&#39;
+        <pre><code class='language-shell' lang='shell'>
+        hbase(main):004:0&gt; delete &#39;students&#39;,&#39;1&#39;,&#39;address:country&#39;
         hbase(main):005:0&gt; get &#39;students&#39;,&#39;1&#39;
         </code></pre>
         <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626516823674.png" referrerpolicy="no-referrer" alt="1626516823674"></p>
         <p>删除行</p>
-        <pre><code class='language-shell' lang='shell'>hbase(main):006:0&gt; deleteall &#39;students&#39;,&#39;1&#39;
+        <pre><code class='language-shell' lang='shell'>
+        hbase(main):006:0&gt; deleteall &#39;students&#39;,&#39;1&#39;
         hbase(main):007:0&gt; scan &#39;students&#39;
         </code></pre>
         <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626516896308.png" referrerpolicy="no-referrer" alt="1626516896308"></p>
         <h4 >其他</h4>
-        <pre><code class='language-shell' lang='shell'>hbase(main):011:0&gt; count &#39;students&#39;
+        <pre><code class='language-shell' lang='shell'>
+        hbase(main):011:0&gt; count &#39;students&#39;
         hbase(main):012:0&gt; truncate &#39;students&#39;
         hbase(main):014:0&gt; scan &#39;students&#39;
         hbase(main):015:0&gt; disable &#39;students&#39;

@@ -1,6 +1,6 @@
 ---
 typora-copy-images-to: ../../../../images/HBase/HBase_usage
-typora-root-url: ../../../..
+typora-root-url: ../../../../
 ---
 
 ## HBase使用
