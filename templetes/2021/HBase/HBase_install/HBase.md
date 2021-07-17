@@ -1,13 +1,14 @@
 ---
-typora-root-url: ..\..\..
+
 typora-copy-images-to: ../../../images/HBase
+typora-root-url: ..\..\..\..\
 ---
 
 ## HBase
 
 ### 1. 逻辑视图
 
-![image-20210716103157946](images/HBase/image-20210716103157946.png)
+![image-20210716103157946](images/HBase/HBase_install/image-20210716103157946.png)
 
 ​	**Table 在行的方向上分割为多个HRegion，一个region由[startkey,endkey)表示，每个HRegion分散在不同的RegionServer中**
 
@@ -41,7 +42,7 @@ typora-copy-images-to: ../../../images/HBase
 
 ### 2. 系统总体结构
 
-![image-20210716104644463](images/HBase//image-20210716104644463.png)
+![image-20210716104644463](images/HBase/HBase_install//image-20210716104644463.png)
 
 
 
@@ -79,17 +80,17 @@ typora-copy-images-to: ../../../images/HBase
 * 存储Hbase 的schema,包括有哪些table，每个table 有哪些column family。
 * ZooKeeper中的三类角色：
 
-![image-20210716110611608](images/HBase//image-20210716110611608.png)
+![image-20210716110611608](images/HBase/HBase_install//image-20210716110611608.png)
 
 * 系统模型图：
 
-  ![image-20210716110202215](images/HBase//image-20210716110202215.png)
+  ![image-20210716110202215](images/HBase/HBase_install//image-20210716110202215.png)
 
   ​	ZooKeeper设计的目的（最终一致性)：client不论连接到哪个Server，展示给它都是同一个视图，这是zookeeper最重要的性能。删除Server1中的数据后，其他集群的Server会自动同步删除之后的数据。因此Zookeeper可以保证多个Server的一致性。 HMaster没有单点问题，HBase中可以启动多个HMaster，通过Zookeeper的Master Election机制保证总有一个Master运行。
 
 ### 3.特殊目录结构
 
-![image-20210716113830096](/images/HBase/image-20210716113830096.png)
+![image-20210716113830096](/images/HBase/HBase_install/image-20210716113830096.png)
 
 **-ROOT-：**
 
@@ -158,7 +159,7 @@ typora-copy-images-to: ../../../images/HBase
 
 1. 在[HBase的清华镜像站](https://mirrors.tuna.tsinghua.edu.cn/apache/hbase/)下载对应的安装包，这里我选择使用hbase-1.6.0-bin.tar.gz
 
-![1626423716647](/images/HBase/1626423716647.png)
+![1626423716647](/images/HBase/HBase_install/1626423716647.png)
 
 2. 在/opt 文件目录下创建一个新的文件夹hbase，将压缩包移动到/opt/hbase目录下，然后解压到当前目录下：
 
@@ -171,7 +172,7 @@ $ sudo tar -zxvf hbase-1.6.0-bin.tar.gz
 $ sudo rm hbase-1.6.0-bin.tar.gz
 ```
 
-![1626424436327](/images/HBase/1626424436327.png)
+![1626424436327](/images/HBase/HBase_install/1626424436327.png)
 
 3. 修改/etc/profile 文件
 
@@ -179,13 +180,13 @@ $ sudo rm hbase-1.6.0-bin.tar.gz
 $ sudo gedit /etc/profile
 ```
 
-![1626424583892](/images/HBase/1626424583892.png)
+![1626424583892](/images/HBase/HBase_install/1626424583892.png)
 
 增加信息:"**export HBASE_HOME=/opt/hbase/hbase-1.6.0** "(注意，＝　左右不要有空格)
 
 并在PATH尾部添加"**:$HBASE_HOME/bin**"
 
-![1626428118678](/images/HBase/1626428118678.png)
+![1626428118678](/images/HBase/HBase_install/1626428118678.png)
 
 保存退出，然后执行
 
@@ -195,7 +196,7 @@ $ source /etc/profile
 
 4. 修改 hbase/config/hbase-env.sh文件，添加如下信息，然后保存退出：
 
-![1626425192571](/images/HBase/1626425192571.png)
+![1626425192571](/images/HBase/HBase_install/1626425192571.png)
 
 5. 修改config/hbase-site.xml文件，添加如下信息(hbase.rootdir中的主机端口号应该和hadoop的配置文件core-site.xml文件中fs.defaultFS的主机和端口号一致)：
 
@@ -233,24 +234,24 @@ $ sudo ./bin/start-hbase.sh
 
 * 在启动时报了如下的警告：
 
-![1626426620984](/images/HBase/1626426620984.png)
+![1626426620984](/images/HBase/HBase_install/1626426620984.png)
 
 这是因为[“JDK 8兼容性指南”](http://www.oracle.com/technetwork/java/javase/8-compatibility-guide-2156366.html)  指出，在Java 8中，命令行标志  `MaxPermSize` 已被删除。原因是永久代从热点堆中被移除并被转移到本地内存。所以为了删除这条消息，编辑 hbase-env.sh，注释掉如下两个语句：
 
-![1626426701065](/images/HBase/1626426701065.png)
+![1626426701065](/images/HBase/HBase_install/1626426701065.png)
 
-![1626426713512](/images/HBase/1626426713512.png)
+![1626426713512](/images/HBase/HBase_install/1626426713512.png)
 
 * localhost拒绝连接
 
-![1626427302226](/images/HBase/1626427302226.png)
+![1626427302226](/images/HBase/HBase_install/1626427302226.png)
 
 编辑配置文件　/etc/ssh/sshd_config
 
 找到：PermitRootLogin prohibit-password在前面添加#
  		添加：PermitRootLogin yes
 
-![1626427455119](/images/HBase/1626427455119.png)
+![1626427455119](/images/HBase/HBase_install/1626427455119.png)
 
 然后重启服务：
 
@@ -260,9 +261,9 @@ $ sudo ./bin/start-hbase.sh
 
 7. 最后启动成功之后，输入jps仍然没有显示HMaster进程，但可以通过http://localhost:16010/master-status访问HBase界面。
 
-![1626496113792](/images/HBase/1626496113792.png)
+![1626496113792](/images/HBase/HBase_install/1626496113792.png)
 
-![1626496203886](/images/HBase/1626496203886.png)
+![1626496203886](/images/HBase/HBase_install/1626496203886.png)
 
 
 
