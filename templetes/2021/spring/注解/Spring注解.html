@@ -1,0 +1,82 @@
+<html>
+<head>
+  <title>Evernote Export</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/604085 (zh-CN, DDL); Windows/10.0.0 (Win64); EDAMVersion=V2;"/>
+  <meta name="content-class" content="yinxiang.markdown"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="505"/>
+
+<div>
+  <span><div style="font-size: 14px; margin: 0; padding: 0; width: 100%;"><h1 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000; margin-top: 14px;">Spring注解</h1>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">Bean</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">广义上的Spring注解可以分为两类：<br/>
+一类注解用于注册Bean：注册Bean的注解的作用就是向IOC容器里放（注册）东西比如@Component、@Repository、@Controller、@Service、@Configration<br/>
+一类注解用于使用Bean：比如@Autowired、@Resource，如果要使用，必须是IOC容器里有的。<br/>
+Spring的@Bean注解用于告诉方法，产生一个Bean对象，然后将这个Bean对象交给Spring管理。产生这个Bean对象的方法只会调用一次，然后Spring就会将这个Bean对象放到自己的容器当中。<br/>
+@Bean明确地指示了一种方法，什么方法呢？产生一个bean的方法，并且交给Spring容器管理；这里也就说明了为什么Bean是放在方法上的注解，因为它很明确地告诉被注释的方法，你给我产生一个Bean，然后交给Spring容器，剩下的你就别管了。记住，@Bean就放在方法上，就是让方法去产生一个Bean，然后交给Spring容器。<br/>
+Bean注解当中还可以传递参数，用来指定该Bean对象的名称，在调用时配合@Qualifier来使用，因为Autowired是默认按照类去匹配的，当有多个Bean对象对应同一类是，就需要用指定名称的方式来加以区别。<br/>
+<img src="Spring注解_files/Image.png" type="image/png" data-filename="Image.png"/></p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">Autowired &amp;&amp; Qualifier</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">该注解可以对类成员变量、方法以及构造函数进行标注，让spring完成自动装配的工作。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Autowired默认是按照类去匹配，但可以配合@Qualifier指定按照名称去装配bean，除此之外， <strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">当对应有多个类时，还可以使用类名小写字母的方式来指定注入</strong>  。但@Qualifier的优先级较高。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="Spring注解_files/Image [1].png" type="image/png" data-filename="Image.png"/></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="Spring注解_files/Image [2].png" type="image/png" data-filename="Image.png"/><br/>
+<img src="Spring注解_files/Image [3].png" type="image/png" data-filename="Image.png"/><br/>
+<img src="Spring注解_files/Image [4].png" type="image/png" data-filename="Image.png"/></p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">Component</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">1、@controller 控制器（注入服务）<br/>
+用于标注控制层，相当于struts中的action层</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">2、@service 服务（注入SERVICES）<br/>
+用于标注服务层，主要用来进行业务的逻辑处理</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">3、@repository（实现DAO访问）<br/>
+用于标注数据访问层，也可以说用于标注数据访问组件，即DAO组件.</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">4、@component （把普通pojo实例化到spring容器中，相当于配置文件中的 &lt;bean /&gt;</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Component泛指各种组件，就是说当我们的类不属于各种归类的时候（不属于@Controller、@Services等的时候），我们就可以使用@Component来标注这个类。</p>
+<h5 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 16px; color: #333;"><strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">@Component和@Bean</strong></h5>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">@Component注解表明一个类会作为组件类，并告知Spring要为这个类创建bean。</p>
+</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">@Bean注解告诉Spring这个方法将会返回一个对象，这个对象要注册为Spring应用上下文中的bean。通常方法体中包含了最终产生bean实例的逻辑。</p>
+</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">两者的目的是一样的，都是注册bean到Spring容器中。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">区别</strong><br/>
+@Component（@Controller、@Service、@Repository）通常是通过类路径扫描来自动侦测以及自动装配到Spring容器中。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">而@Bean注解通常是我们在标有该注解的方法中定义产生这个bean的逻辑。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">@Component 作用于类，@Bean作用于方法</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">@Configuration</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">从Spring3.0，@Configuration用于定义配置类，可替换xml配置文件，被注解的类内部包含有一个或多个被@Bean注解的方法，这些方法将会被AnnotationConfigApplicationContext 或 AnnotationConfigWebApplicationContext类进行扫描，并用于构建bean定义，初始化Spring容器。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">该类会被CGLIB动态代理生成子类，可以达到这样的效果：在某@Bean方法下调用另一个标注了@Bean的方法，得到的会是同一个Bean对象；</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">1、<br/>
+@Configuration注释类表明其主要目的是作为bean定义的源；<br/>
+@Configuration类允许通过调用同一类中的其他@Bean方法来定义bean之间的依赖关系。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">2、@Configuration注解的配置类有如下要求：</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">可以作为Component标签使用</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">标注的类不可以是final类型（final无法动态代理生成子类）</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">注解类里的@Bean对象的id默认是方法名，如果设置了@Bean的name或者value属性，取第一个作为beanId，name中其他的作为别名使用；</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">标注了@Configuration的类不能是普通内部类，如果非要是个内部类，那就静态内部类也是可以的，因为普通内部类依赖于外部类的存在。</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">3、配置@Configuration和不配置的区别:<br/>
+在使用@Configuration注解之后，调用@Bean方法产生的实例只会创建一次，与之相依赖的@Bean函数获取的实例也是同一个实例。<br/>
+不使用@Configuration注解时，实例化对象时，每次会创建新的对象。</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">举例：</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="Spring注解_files/Image [5].png" type="image/png" data-filename="Image.png"/><br/>
+<img src="Spring注解_files/Image [6].png" type="image/png" data-filename="Image.png"/><br/>
+执行之后的结果：（获取的实例为同一个）<br/>
+<img src="Spring注解_files/Image [7].png" type="image/png" data-filename="Image.png"/></p>
+</div></span>
+</div>
+</body>
+</html>
