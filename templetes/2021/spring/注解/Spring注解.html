@@ -72,7 +72,8 @@ Bean注解当中还可以传递参数，用来指定该Bean对象的名称，在
 在使用@Configuration注解之后，调用@Bean方法产生的实例只会创建一次，与之相依赖的@Bean函数获取的实例也是同一个实例。<br/>
 不使用@Configuration注解时，实例化对象时，每次会创建新的对象。</p>
 <h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">举例：</h4>
-<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="Spring注解_files/Image [5].png" type="image/png" data-filename="Image.png"/><br/>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; text-align: center">
+  <img src="Spring注解_files/Image [5].png" type="image/png" data-filename="Image.png"/><br/>
 <img src="Spring注解_files/Image [6].png" type="image/png" data-filename="Image.png"/><br/>
 执行之后的结果：（获取的实例为同一个）<br/>
 <img src="Spring注解_files/Image [7].png" type="image/png" data-filename="Image.png"/></p>

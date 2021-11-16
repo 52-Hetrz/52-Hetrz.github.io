@@ -73,12 +73,13 @@
         Spring的@Bean注解用于告诉方法，产生一个Bean对象，然后将这个Bean对象交给Spring管理。产生这个Bean对象的方法只会调用一次，然后Spring就会将这个Bean对象放到自己的容器当中。<br/>
         @Bean明确地指示了一种方法，什么方法呢？产生一个bean的方法，并且交给Spring容器管理；这里也就说明了为什么Bean是放在方法上的注解，因为它很明确地告诉被注释的方法，你给我产生一个Bean，然后交给Spring容器，剩下的你就别管了。记住，@Bean就放在方法上，就是让方法去产生一个Bean，然后交给Spring容器。<br/>
         Bean注解当中还可以传递参数，用来指定该Bean对象的名称，在调用时配合@Qualifier来使用，因为Autowired是默认按照类去匹配的，当有多个Bean对象对应同一类是，就需要用指定名称的方式来加以区别。<br/>
-        <img src="Spring注解_files/Image.png" type="image/png" data-filename="Image.png"/></p>
+        </p>
+        <p style="text-align: center;"><img src="Spring注解_files/Image.png" type="image/png" data-filename="Image.png"/></p>
         <h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">Autowired &amp;&amp; Qualifier</h3>
         <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">该注解可以对类成员变量、方法以及构造函数进行标注，让spring完成自动装配的工作。</p>
         <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Autowired默认是按照类去匹配，但可以配合@Qualifier指定按照名称去装配bean，除此之外， <strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">当对应有多个类时，还可以使用类名小写字母的方式来指定注入</strong>  。但@Qualifier的优先级较高。</p>
-        <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="Spring注解_files/Image [1].png" type="image/png" data-filename="Image.png"/></p>
-        <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="Spring注解_files/Image [2].png" type="image/png" data-filename="Image.png"/><br/>
+        <p style="text-align: center;"><img src="Spring注解_files/Image [1].png" type="image/png" data-filename="Image.png"/></p>
+        <p style="text-align: center;"><img src="Spring注解_files/Image [2].png" type="image/png" data-filename="Image.png"/><br/>
         <img src="Spring注解_files/Image [3].png" type="image/png" data-filename="Image.png"/><br/>
         <img src="Spring注解_files/Image [4].png" type="image/png" data-filename="Image.png"/></p>
         <h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">Component</h3>
@@ -121,9 +122,10 @@
         在使用@Configuration注解之后，调用@Bean方法产生的实例只会创建一次，与之相依赖的@Bean函数获取的实例也是同一个实例。<br/>
         不使用@Configuration注解时，实例化对象时，每次会创建新的对象。</p>
         <h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">举例：</h4>
-        <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="Spring注解_files/Image [5].png" type="image/png" data-filename="Image.png"/><br/>
-        <img src="Spring注解_files/Image [6].png" type="image/png" data-filename="Image.png"/><br/>
-        执行之后的结果：（获取的实例为同一个）<br/>
+        <p style="text-align: center;">
+          <img src="Spring注解_files/Image [5].png" type="image/png" data-filename="Image.png"/>
+        <img src="Spring注解_files/Image [6].png" type="image/png" data-filename="Image.png"/>
+        执行之后的结果：（获取的实例为同一个）
         <img src="Spring注解_files/Image [7].png" type="image/png" data-filename="Image.png"/></p>
         </div></span>
         </div>
