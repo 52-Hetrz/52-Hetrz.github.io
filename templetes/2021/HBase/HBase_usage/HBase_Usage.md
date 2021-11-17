@@ -12,7 +12,7 @@ $ cd $HBASE_HOME
 $ ./bin/hbase shell
 ```
 
-![1626514543971](/images/HBase/HBase_usage/1626514543971.png)
+![1626514543971](/templetes/2021/HBase/images/HBase_usage/1626514543971.png)
 
 ### 1. 基本语法一览
 
@@ -50,7 +50,7 @@ $ ./bin/hbase shell
 hbase(main):001:0>  status 
 ```
 
-![1626514735704](/images/HBase/HBase_usage/1626514735704.png)
+![1626514735704](/templetes/2021/HBase/images/HBase_usage/1626514735704.png)
 
 #### name_space（命名空间）
 
@@ -63,7 +63,7 @@ hbase(main):007:0> drop_namespace 'test'						//删除命名空间'test'
 hbase(main):008:0> list_namespace										//查看命名空间
 ```
 
-![1626515274123](/images/HBase/HBase_usage/1626515274123.png)
+![1626515274123](/templetes/2021/HBase/images/HBase_usage/1626515274123.png)
 
 #### Table（表）
 
@@ -76,7 +76,7 @@ hbase(main):004:0> list_namespace_tables 'test'
 hbase(main):005:0> desc 'test:test_table'
 ```
 
-![1626515743645](/images/HBase/HBase_usage/1626515743645.png)
+![1626515743645](/templetes/2021/HBase/images/HBase_usage/1626515743645.png)
 
 如果不指定命名空间，会将该表默认创建在default命名空间下：
 
@@ -98,7 +98,7 @@ hbase(main):011:0> put 'students','2','info:age','20'
 hbase(main):012:0> put 'students','2','info:birthday','2001-1-26'
 ```
 
-![1626516598910](/images/HBase/HBase_usage/1626516598910.png)
+![1626516598910](/templetes/2021/HBase/images/HBase_usage/1626516598910.png)
 
 查看数据：
 
@@ -108,7 +108,7 @@ hbase(main):002:0> get 'students','2'
 hbase(main):003:0> scan 'students'
 ```
 
-![1626516700042](/images/HBase/HBase_usage/1626516700042.png)
+![1626516700042](/templetes/2021/HBase/images/HBase_usage/1626516700042.png)
 
 删除记录
 
@@ -117,7 +117,7 @@ hbase(main):004:0> delete 'students','1','address:country'
 hbase(main):005:0> get 'students','1'
 ```
 
-![1626516823674](/images/HBase/HBase_usage/1626516823674.png)
+![1626516823674](/templetes/2021/HBase/images/HBase_usage/1626516823674.png)
 
 删除行
 
@@ -126,7 +126,7 @@ hbase(main):006:0> deleteall 'students','1'
 hbase(main):007:0> scan 'students'
 ```
 
-![1626516896308](/images/HBase/HBase_usage/1626516896308.png)
+![1626516896308](/templetes/2021/HBase/images/HBase_usage/1626516896308.png)
 
 #### 其他
 
@@ -138,7 +138,7 @@ hbase(main):015:0> disable 'students'
 hbase(main):016:0> drop 'students'
 ```
 
-![1626517775971](/images/HBase/HBase_usage/1626517775971.png)
+![1626517775971](/templetes/2021/HBase/images/HBase_usage/1626517775971.png)
 
-![1626517790473](/images/HBase/HBase_usage/1626517790473.png)
+![1626517790473](/templetes/2021/HBase/images/HBase_usage/1626517790473.png)
 

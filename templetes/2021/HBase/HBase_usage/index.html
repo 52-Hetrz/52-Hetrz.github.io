@@ -69,7 +69,7 @@
         <pre><code class='language-shell' lang='shell'>$ cd $HBASE_HOME
         $ ./bin/hbase shell
         </code></pre>
-        <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626514543971.png" referrerpolicy="no-referrer" alt="1626514543971"></p>
+        <p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_usage/1626514543971.png" referrerpolicy="no-referrer" alt="1626514543971"></p>
         <h3 >1. 基本语法一览</h3>
         <figure><table style="text-align: center;" border="1" margin="0 auto">
         <thead>
@@ -105,7 +105,7 @@
         <pre><code class='language-shell' lang='shell'>
         hbase(main):001:0&gt;  status 
         </code></pre>
-        <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626514735704.png" referrerpolicy="no-referrer" alt="1626514735704"></p>
+        <p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_usage/1626514735704.png" referrerpolicy="no-referrer" alt="1626514735704"></p>
         <h4 >name_space（命名空间）</h4>
         <pre><code class='language-shell' lang='shell'>
         hbase(main):002:0&gt; create_namespace &#39;test&#39;						
@@ -115,7 +115,7 @@
         hbase(main):007:0&gt; drop_namespace &#39;test&#39;					
         hbase(main):008:0&gt; list_namespace										
         </code></pre>
-        <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626515274123.png" referrerpolicy="no-referrer" alt="1626515274123"></p>
+        <p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_usage/1626515274123.png" referrerpolicy="no-referrer" alt="1626515274123"></p>
         <h4 >Table（表）</h4>
         <p>在创建表时，如果指定命名空间，则会将表创建在该命名空间下：</p>
         <pre><code class='language-shell' lang='shell'>
@@ -124,7 +124,7 @@
         hbase(main):004:0&gt; list_namespace_tables &#39;test&#39;
         hbase(main):005:0&gt; desc &#39;test:test_table&#39;
         </code></pre>
-        <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626515743645.png" referrerpolicy="no-referrer" alt="1626515743645"></p>
+        <p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_usage/1626515743645.png" referrerpolicy="no-referrer" alt="1626515743645"></p>
         <p>如果不指定命名空间，会将该表默认创建在default命名空间下：</p>
         <pre><code class='language-shell' lang='shell'>
         hbase(main):005:0&gt; create &#39;students&#39;,&#39;id&#39;,&#39;address&#39;,&#39;info&#39;
@@ -140,26 +140,26 @@
         hbase(main):011:0&gt; put &#39;students&#39;,&#39;2&#39;,&#39;info:age&#39;,&#39;20&#39;
         hbase(main):012:0&gt; put &#39;students&#39;,&#39;2&#39;,&#39;info:birthday&#39;,&#39;2001-1-26&#39;
         </code></pre>
-        <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626516598910.png" referrerpolicy="no-referrer" alt="1626516598910"></p>
+        <p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_usage/1626516598910.png" referrerpolicy="no-referrer" alt="1626516598910"></p>
         <p>查看数据：</p>
         <pre><code class='language-shell' lang='shell'>
         hbase(main):001:0&gt; get &#39;students&#39;,&#39;1&#39;
         hbase(main):002:0&gt; get &#39;students&#39;,&#39;2&#39;
         hbase(main):003:0&gt; scan &#39;students&#39;
         </code></pre>
-        <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626516700042.png" referrerpolicy="no-referrer" alt="1626516700042"></p>
+        <p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_usage/1626516700042.png" referrerpolicy="no-referrer" alt="1626516700042"></p>
         <p>删除记录</p>
         <pre><code class='language-shell' lang='shell'>
         hbase(main):004:0&gt; delete &#39;students&#39;,&#39;1&#39;,&#39;address:country&#39;
         hbase(main):005:0&gt; get &#39;students&#39;,&#39;1&#39;
         </code></pre>
-        <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626516823674.png" referrerpolicy="no-referrer" alt="1626516823674"></p>
+        <p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_usage/1626516823674.png" referrerpolicy="no-referrer" alt="1626516823674"></p>
         <p>删除行</p>
         <pre><code class='language-shell' lang='shell'>
         hbase(main):006:0&gt; deleteall &#39;students&#39;,&#39;1&#39;
         hbase(main):007:0&gt; scan &#39;students&#39;
         </code></pre>
-        <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626516896308.png" referrerpolicy="no-referrer" alt="1626516896308"></p>
+        <p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_usage/1626516896308.png" referrerpolicy="no-referrer" alt="1626516896308"></p>
         <h4 >其他</h4>
         <pre><code class='language-shell' lang='shell'>
         hbase(main):011:0&gt; count &#39;students&#39;
@@ -168,8 +168,8 @@
         hbase(main):015:0&gt; disable &#39;students&#39;
         hbase(main):016:0&gt; drop &#39;students&#39;
         </code></pre>
-        <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626517775971.png" referrerpolicy="no-referrer" alt="1626517775971"></p>
-        <p style="text-align: center;"><img src="/images/HBase/HBase_usage/1626517790473.png" referrerpolicy="no-referrer" alt="1626517790473"></p>
+        <p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_usage/1626517775971.png" referrerpolicy="no-referrer" alt="1626517775971"></p>
+        <p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_usage/1626517790473.png" referrerpolicy="no-referrer" alt="1626517790473"></p>
         <p>&nbsp;</p>
         
       </div>

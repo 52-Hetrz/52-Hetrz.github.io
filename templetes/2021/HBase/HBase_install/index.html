@@ -65,7 +65,7 @@
           <strong><em>HBase介绍及安装</em></strong>
           <h2 >HBase</h2>
 <h3 >1. 逻辑视图</h3>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install/image-20210716103157946.png" referrerpolicy="no-referrer" alt="image-20210716103157946"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install/image-20210716103157946.png" referrerpolicy="no-referrer" alt="image-20210716103157946"></p>
 <p>	<strong>Table 在行的方向上分割为多个HRegion，一个region由[startkey,endkey)表示，每个HRegion分散在不同的RegionServer中</strong></p>
 <p><strong>Row（行）:</strong></p>
 <ul>
@@ -99,7 +99,7 @@
 
 </ul>
 <h3 >2. 系统总体结构</h3>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install//image-20210716104644463.png" referrerpolicy="no-referrer" alt="image-20210716104644463"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install//image-20210716104644463.png" referrerpolicy="no-referrer" alt="image-20210716104644463"></p>
 <p>&nbsp;</p>
 <p><strong>Client（客户端）： </strong></p>
 <ul>
@@ -140,16 +140,16 @@
 <li>ZooKeeper中的三类角色：</li>
 
 </ul>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install//image-20210716110611608.png" referrerpolicy="no-referrer" alt="image-20210716110611608"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install//image-20210716110611608.png" referrerpolicy="no-referrer" alt="image-20210716110611608"></p>
 <ul>
 <li><p>系统模型图：</p>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install//image-20210716110202215.png" referrerpolicy="no-referrer" alt="image-20210716110202215"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install//image-20210716110202215.png" referrerpolicy="no-referrer" alt="image-20210716110202215"></p>
 <p>	ZooKeeper设计的目的（最终一致性)：client不论连接到哪个Server，展示给它都是同一个视图，这是zookeeper最重要的性能。删除Server1中的数据后，其他集群的Server会自动同步删除之后的数据。因此Zookeeper可以保证多个Server的一致性。 HMaster没有单点问题，HBase中可以启动多个HMaster，通过Zookeeper的Master Election机制保证总有一个Master运行。</p>
 </li>
 
 </ul>
 <h3 >3.特殊目录结构</h3>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install/image-20210716113830096.png" referrerpolicy="no-referrer" alt="image-20210716113830096"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install/image-20210716113830096.png" referrerpolicy="no-referrer" alt="image-20210716113830096"></p>
 <p><strong>-ROOT-：</strong></p>
 <ul>
 <li>记录了.META.表的Region信息，-ROOT-只有一个root region，Zookeeper中记录了-ROOT-表的location。</li>
@@ -224,7 +224,7 @@
 <li>在<a href='https://mirrors.tuna.tsinghua.edu.cn/apache/hbase/'>HBase的清华镜像站</a>下载对应的安装包，这里我选择使用hbase-1.6.0-bin.tar.gz</li>
 
 </ol>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install/1626423716647.png" referrerpolicy="no-referrer" alt="1626423716647"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install/1626423716647.png" referrerpolicy="no-referrer" alt="1626423716647"></p>
 <ol start='2' >
 <li>在/opt 文件目录下创建一个新的文件夹hbase，将压缩包移动到/opt/hbase目录下，然后解压到当前目录下：</li>
 
@@ -236,17 +236,17 @@ $ sudo mv hbase-1.6.0-bin.tar.gz /opt/hbase
 $ sudo tar -zxvf hbase-1.6.0-bin.tar.gz
 $ sudo rm hbase-1.6.0-bin.tar.gz
 </code></pre>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install/1626424436327.png" referrerpolicy="no-referrer" alt="1626424436327"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install/1626424436327.png" referrerpolicy="no-referrer" alt="1626424436327"></p>
 <ol start='3' >
 <li>修改/etc/profile 文件</li>
 
 </ol>
 <pre><code class='language-shell' lang='shell'>$ sudo gedit /etc/profile
 </code></pre>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install/1626424583892.png" referrerpolicy="no-referrer" alt="1626424583892"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install/1626424583892.png" referrerpolicy="no-referrer" alt="1626424583892"></p>
 <p>增加信息:&quot;<strong>export HBASE_HOME=/opt/hbase/hbase-1.6.0</strong> &quot;(注意，＝　左右不要有空格)</p>
 <p>并在PATH尾部添加&quot;<strong>:$HBASE_HOME/bin</strong>&quot;</p>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install/1626428118678.png" referrerpolicy="no-referrer" alt="1626428118678"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install/1626428118678.png" referrerpolicy="no-referrer" alt="1626428118678"></p>
 <p style="text-align: center;">保存退出，然后执行</p>
 <pre><code class='language-shell' lang='shell'>$ source /etc/profile
 </code></pre>
@@ -254,7 +254,7 @@ $ sudo rm hbase-1.6.0-bin.tar.gz
 <li>修改 hbase/config/hbase-env.sh文件，添加如下信息，然后保存退出：</li>
 
 </ol>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install/1626425192571.png" referrerpolicy="no-referrer" alt="1626425192571"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install/1626425192571.png" referrerpolicy="no-referrer" alt="1626425192571"></p>
 <ol start='5' >
 <li>修改config/hbase-site.xml文件，添加如下信息(hbase.rootdir中的主机端口号应该和hadoop的配置文件core-site.xml文件中fs.defaultFS的主机和端口号一致)：</li>
 
@@ -293,19 +293,19 @@ $ sudo ./bin/start-hbase.sh
 <li>在启动时报了如下的警告：</li>
 
 </ul>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install/1626426620984.png" referrerpolicy="no-referrer" alt="1626426620984"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install/1626426620984.png" referrerpolicy="no-referrer" alt="1626426620984"></p>
 <p>这是因为<a href='http://www.oracle.com/technetwork/java/javase/8-compatibility-guide-2156366.html'>“JDK 8兼容性指南”</a>  指出，在Java 8中，命令行标志  <code>MaxPermSize</code> 已被删除。原因是永久代从热点堆中被移除并被转移到本地内存。所以为了删除这条消息，编辑 hbase-env.sh，注释掉如下两个语句：</p>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install/1626426701065.png" referrerpolicy="no-referrer" alt="1626426701065"></p>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install/1626426713512.png" referrerpolicy="no-referrer" alt="1626426713512"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install/1626426701065.png" referrerpolicy="no-referrer" alt="1626426701065"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install/1626426713512.png" referrerpolicy="no-referrer" alt="1626426713512"></p>
 <ul>
 <li>localhost拒绝连接</li>
 
 </ul>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install/1626427302226.png" referrerpolicy="no-referrer" alt="1626427302226"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install/1626427302226.png" referrerpolicy="no-referrer" alt="1626427302226"></p>
 <p>编辑配置文件　/etc/ssh/sshd_config</p>
 <p>找到：PermitRootLogin prohibit-password在前面添加#
  		添加：PermitRootLogin yes</p>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install/1626427455119.png" referrerpolicy="no-referrer" alt="1626427455119"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install/1626427455119.png" referrerpolicy="no-referrer" alt="1626427455119"></p>
 <p>然后重启服务：</p>
 <p><code>$ sudo service ssh restart</code></p>
 <ul>
@@ -316,8 +316,8 @@ $ sudo ./bin/start-hbase.sh
 <li>最后启动成功之后，输入jps仍然没有显示HMaster进程，但可以通过<a href='http://localhost:16010/master-status' target='_blank' class='url'>http://localhost:16010/master-status</a>访问HBase界面。</li>
 
 </ol>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install/1626496113792.png" referrerpolicy="no-referrer" alt="1626496113792"></p>
-<p style="text-align: center;"><img src="/images/HBase/HBase_install/1626496203886.png" referrerpolicy="no-referrer" alt="1626496203886"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install/1626496113792.png" referrerpolicy="no-referrer" alt="1626496113792"></p>
+<p style="text-align: center;"><img src="/templetes/2021/HBase/images/HBase_install/1626496203886.png" referrerpolicy="no-referrer" alt="1626496203886"></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
