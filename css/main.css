@@ -153,10 +153,17 @@ h2.category {
   z-index: 2;
   padding: 30px;
 }
+#lx-aside .good-life {
+  text-align: left;
+  margin-left: 5% ;
+  margin-top: 6%;
+  color: white;
+
+}
 #lx-aside .featured {
   z-index: 2;
   margin: auto;
-  margin-top: 25%;
+  margin-top: 18%;
   width: 85%;
 }
 .single #lx-aside .page-title {
@@ -371,7 +378,8 @@ a.category-link {
   font-size: 14px;
 }
 .padding {
-  padding: 20px 60px 30px 60px;
+  /*padding: 20px 60px 30px 60px;*/
+  padding: 15px 50px 20px 50px;
 }
 @media screen and (max-width: 768px) {
   .padding {
@@ -380,7 +388,7 @@ a.category-link {
 }
 .lx-post .lx-entry {
   float: left;
-  width: 100%;
+  width: 98%;
   border-bottom: 1px solid #dedede;
 }
 .single .lx-post .lx-entry {
@@ -1274,4 +1282,9 @@ blockquote div {
 }
 .MathJax_SVG_Display {
   overflow: auto;
+}
+.my-index-part {
+  border-radius: 20px;
+  margin: 1% 1% 1% 1%;
+  background-color: white;
 }
